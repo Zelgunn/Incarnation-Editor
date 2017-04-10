@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>842</width>
+    <height>586</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="centralWidgetLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="mainGridLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QTabWidget" name="menuTabWidget">
+        <property name="tabPosition">
+         <enum>QTabWidget::West</enum>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <widget class="QWidget" name="homeTab">
+         <attribute name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/icons/Home.png</normaloff>:/icons/icons/Home.png</iconset>
+         </attribute>
+         <attribute name="title">
+          <string/>
+         </attribute>
+         <attribute name="toolTip">
+          <string>Home</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="homeTabLayout"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="timelineTab">
+         <attribute name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/icons/Time.png</normaloff>:/icons/icons/Time.png</iconset>
+         </attribute>
+         <attribute name="title">
+          <string/>
+         </attribute>
+         <attribute name="toolTip">
+          <string>Timeline editor</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="timelineTabLayout"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="structureTab">
+         <attribute name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/icons/Plan.png</normaloff>:/icons/icons/Plan.png</iconset>
+         </attribute>
+         <attribute name="title">
+          <string/>
+         </attribute>
+         <attribute name="toolTip">
+          <string>Structure editor</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="structureTabLayout"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="roomTab">
+         <attribute name="title">
+          <string>Page</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="roomTabLayout"/>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
