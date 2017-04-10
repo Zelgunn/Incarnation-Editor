@@ -3,5 +3,7 @@
         <file>icons/Home.png</file>
         <file>icons/Time.png</file>
         <file>icons/Plan.png</file>
+        <file>icons/Room.png</file>
+        <file>icons/Settings.png</file>
     </qresource>
 </RCC>

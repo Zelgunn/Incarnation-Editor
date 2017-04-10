@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string notr="true">Incarnation editor v0.1</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="centralWidgetLayout">
@@ -41,7 +41,7 @@
          <enum>QTabWidget::West</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>4</number>
         </property>
         <property name="iconSize">
          <size>
@@ -51,7 +51,7 @@
         </property>
         <widget class="QWidget" name="homeTab">
          <attribute name="icon">
-          <iconset resource="icons.qrc">
+          <iconset resource="images.qrc">
            <normaloff>:/icons/icons/Home.png</normaloff>:/icons/icons/Home.png</iconset>
          </attribute>
          <attribute name="title">
@@ -68,7 +68,7 @@
         </widget>
         <widget class="QWidget" name="timelineTab">
          <attribute name="icon">
-          <iconset resource="icons.qrc">
+          <iconset resource="images.qrc">
            <normaloff>:/icons/icons/Time.png</normaloff>:/icons/icons/Time.png</iconset>
          </attribute>
          <attribute name="title">
@@ -85,7 +85,7 @@
         </widget>
         <widget class="QWidget" name="structureTab">
          <attribute name="icon">
-          <iconset resource="icons.qrc">
+          <iconset resource="images.qrc">
            <normaloff>:/icons/icons/Plan.png</normaloff>:/icons/icons/Plan.png</iconset>
          </attribute>
          <attribute name="title">
@@ -101,12 +101,185 @@
          </layout>
         </widget>
         <widget class="QWidget" name="roomTab">
+         <attribute name="icon">
+          <iconset resource="images.qrc">
+           <normaloff>:/icons/icons/Room.png</normaloff>:/icons/icons/Room.png</iconset>
+         </attribute>
          <attribute name="title">
-          <string>Page</string>
+          <string/>
+         </attribute>
+         <attribute name="toolTip">
+          <string>Room editor</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <layout class="QGridLayout" name="roomTabLayout"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="settingsTab">
+         <attribute name="icon">
+          <iconset resource="images.qrc">
+           <normaloff>:/icons/icons/Settings.png</normaloff>:/icons/icons/Settings.png</iconset>
+         </attribute>
+         <attribute name="title">
+          <string notr="true"/>
+         </attribute>
+         <attribute name="toolTip">
+          <string>Settings</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="1">
+           <layout class="QGridLayout" name="settingsTabLayout">
+            <item row="1" column="0">
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="4">
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="1">
+             <widget class="QPushButton" name="settingsSaveButton">
+              <property name="text">
+               <string>Save</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="3">
+             <widget class="QPushButton" name="settingsCancelButton">
+              <property name="text">
+               <string>Cancel</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="5">
+             <widget class="QTabWidget" name="settingsTabsWidget">
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="generalSettingsTab">
+               <attribute name="title">
+                <string>General</string>
+               </attribute>
+               <layout class="QGridLayout" name="gridLayout_5">
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="generalSettingsTabLayout">
+                  <item row="0" column="2">
+                   <widget class="QComboBox" name="userLanguageComboBox">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="currentText">
+                     <string notr="true">English</string>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string notr="true">English</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string notr="true">Français</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="userLanguageLabel">
+                    <property name="text">
+                     <string>Language :</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
+                    <property name="margin">
+                     <number>2</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <spacer name="horizontalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="0" column="3">
+                   <spacer name="horizontalSpacer_5">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="timelineEditorSettingsTab">
+               <attribute name="title">
+                <string>Timeline editor</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="structureEditorSettingsTab">
+               <attribute name="title">
+                <string>Structure editor</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="roomEditorSettingsTab">
+               <attribute name="title">
+                <string>Room editor</string>
+               </attribute>
+              </widget>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -119,7 +292,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="icons.qrc"/>
+  <include location="images.qrc"/>
  </resources>
  <connections/>
 </ui>
