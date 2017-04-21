@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,14 +25,60 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    userpreferencesmanager.cpp
+    GUI/Windows/mainwindow.cpp \
+    GUI/Windows/structurewindow.cpp \
+    User/useraction.cpp \
+    User/userpreferences.cpp \
+    Projects/projectmanager.cpp \
+    Projects/project.cpp \
+    GUI/GraphicsItems/roommarker.cpp \
+    Projects/room.cpp \
+    GUI/GraphicsItems/handle.cpp \
+    GUI/Widgets/structureview.cpp \
+    GUI/Widgets/structurescene.cpp \
+    User/Actions/roomtransformaction.cpp \
+    User/Actions/roomhandletransformaction.cpp \
+    GUI/Windows/createroomdialog.cpp \
+    User/Actions/roomcreationaction.cpp \
+    User/Actions/roomdeletionaction.cpp \
+    Projects/asset.cpp \
+    GUI/Windows/roomwindow.cpp \
+    GUI/Widgets/roomview.cpp \
+    GUI/Widgets/roomscene.cpp \
+    GUI/Widgets/shelflistwidget.cpp \
+    GUI/GraphicsItems/assetmarker.cpp \
+    User/Actions/assettransformaction.cpp
 
-HEADERS  += mainwindow.h \
-    userpreferencesmanager.h
+HEADERS  += GUI/Windows/mainwindow.h \
+    GUI/Windows/structurewindow.h \
+    User/useraction.h \
+    User/userpreferences.h \
+    Projects/projectmanager.h \
+    Projects/project.h \
+    GUI/GraphicsItems/roommarker.h \
+    Projects/room.h \
+    GUI/GraphicsItems/handle.h \
+    GUI/Widgets/structureview.h \
+    GUI/Widgets/structurescene.h \
+    User/Actions/roomtransformaction.h \
+    User/Actions/roomhandletransformaction.h \
+    GUI/Windows/createroomdialog.h \
+    User/Actions/roomcreationaction.h \
+    User/Actions/roomdeletionaction.h \
+    Projects/asset.h \
+    GUI/Windows/roomwindow.h \
+    GUI/Widgets/roomview.h \
+    GUI/Widgets/roomscene.h \
+    GUI/Widgets/shelflistwidget.h \
+    GUI/GraphicsItems/assetmarker.h \
+    User/Actions/assettransformaction.h
 
-FORMS    += mainwindow.ui
+FORMS    += GUI/Windows/mainwindow.ui \
+    GUI/Windows/structurewindow.ui \
+    GUI/Windows/createroomdialog.ui \
+    GUI/Windows/roomwindow.ui
 
 RESOURCES += \
     images.qrc \
-    translations.qrc
+    translations.qrc \
+    database.qrc

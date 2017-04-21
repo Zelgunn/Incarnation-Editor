@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <Asset class="0" name="HTC" icon_url=":/icons/icons/NewFile.png" width="1" height="1">
+  <Test type="6" value="6.5"/>
+ </Asset>
+</root>

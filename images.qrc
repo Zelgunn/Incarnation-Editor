@@ -5,5 +5,50 @@
         <file>icons/Plan.png</file>
         <file>icons/Room.png</file>
         <file>icons/Settings.png</file>
+        <file>icons/CopyFile.png</file>
+        <file>icons/NewFile.png</file>
+        <file>icons/OpenFile.png</file>
+        <file>icons/ThickSquare.png</file>
+        <file>icons/ThickSquare_shadow.png</file>
+        <file>database/Structures/Icons_Bridge01.png</file>
+        <file>database/Structures/Icons_Door01.png</file>
+        <file>database/Structures/Icons_Door02.png</file>
+        <file>database/Structures/Icons_Door03.png</file>
+        <file>database/Structures/Icons_FloorType01.png</file>
+        <file>database/Structures/Icons_FloorType02.png</file>
+        <file>database/Structures/Icons_Wall.png</file>
+        <file>database/Structures/Icons_WallBase.png</file>
+        <file>database/Structures/Icons_WallGlass.png</file>
+        <file>database/Structures/Icons_Wallhole.png</file>
+        <file>database/Structures/Icons_WallScreen.png</file>
+        <file>database/Devices/Icons_htc.png</file>
+        <file>database/Negative/Icons_BrokenPC.png</file>
+        <file>database/Negative/Icons_BrokenTap.png</file>
+        <file>database/Negative/Icons_CrimeScene.png</file>
+        <file>database/Negative/Icons_ElectricalOutlet.png</file>
+        <file>database/Negative/Icons_Fan.png</file>
+        <file>database/Negative/Icons_HospitalBed.png</file>
+        <file>database/Negative/Icons_Spider01.png</file>
+        <file>database/Negative/Icons_Spider02.png</file>
+        <file>database/Negative/Icons_SurgicalTools.png</file>
+        <file>database/Negative/Icons_TenguMask.png</file>
+        <file>database/Neutral/Icons_Bench01.png</file>
+        <file>database/Neutral/Icons_BoxEmpty.png</file>
+        <file>database/Neutral/Icons_BoxFull.png</file>
+        <file>database/Neutral/Icons_Chair01.png</file>
+        <file>database/Neutral/Icons_Light01.png</file>
+        <file>database/Neutral/Icons_Light02.png</file>
+        <file>database/Neutral/Icons_Light03.png</file>
+        <file>database/Neutral/Icons_Light04.png</file>
+        <file>database/Neutral/Icons_Phone.png</file>
+        <file>database/Neutral/Icons_Pillow.png</file>
+        <file>database/Neutral/Icons_Pipes.png</file>
+        <file>database/Neutral/Icons_Shelf01.png</file>
+        <file>database/Neutral/Icons_Valve.png</file>
+        <file>database/Positive/Icons_Aquarium.png</file>
+        <file>database/Positive/Icons_Coffee.png</file>
+        <file>database/Positive/Icons_Plant01.png</file>
+        <file>database/Positive/Icons_Speakers.png</file>
+        <file>database/Positive/Icons_Trophee.png</file>
     </qresource>
 </RCC>
