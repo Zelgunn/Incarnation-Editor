@@ -25,6 +25,8 @@ public:
     bool save();
 
     static void loadDatabase();
+    static void sortDatabase();
+    static bool compareAssetName(const QWeakPointer<Asset> a1, const QWeakPointer<Asset> a2);
     static int assetDatabaseSize();
     static QWeakPointer<Asset> assetDatabaseAt(int index);
     static QList<QWeakPointer<Asset>> assetDatabase();

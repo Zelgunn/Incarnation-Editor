@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
- <Asset class="0" name="HTC" icon_url=":/icons/icons/NewFile.png" width="1" height="1">
-  <Test type="6" value="6.5"/>
- </Asset>
+ <Asset class="0" name="HTC" icon_url=":/icons/database/Devices/Icons_htc.png" width="1" height="1"/>
+
+ <Asset class="0" name="Bridge" icon_url=":/icons/database/Structures/Icons_Bridge01.png" width="1" height="1"/>
+ <Asset class="0" name="Door (1)" icon_url=":/icons/database/Structures/Icons_Door01.png" width="1" height="1"/>
+ <Asset class="0" name="Door (2)" icon_url=":/icons/database/Structures/Icons_Door02.png" width="1" height="1"/>
+ <Asset class="0" name="Door (3)" icon_url=":/icons/database/Structures/Icons_Door03.png" width="1" height="1"/>
+ <Asset class="0" name="Floor (1)" icon_url=":/icons/database/Structures/Icons_FloorType01.png" width="1" height="1"/>
+ <Asset class="0" name="Floor (2)" icon_url=":/icons/database/Structures/Icons_FloorType02.png" width="1" height="1"/>
+ <Asset class="0" name="Wall" icon_url=":/icons/database/Structures/Icons_Wall.png" width="1" height="1"/>
+ <Asset class="0" name="Wall (base)" icon_url=":/icons/database/Structures/Icons_WallBase.png" width="1" height="1"/>
+ <Asset class="0" name="Wall (glass)" icon_url=":/icons/database/Structures/Icons_WallGlass.png" width="1" height="1"/>
+ <Asset class="0" name="Wall (with hole)" icon_url=":/icons/database/Structures/Icons_Wallhole.png" width="1" height="1"/>
+ <Asset class="0" name="Wall (with screen)" icon_url=":/icons/database/Structures/Icons_WallScreen.png" width="1" height="1"/>
+
+ <Asset class="0" name="PC (broken)" icon_url=":/icons/database/Negative/Icons_BrokenPC.png" width="1" height="1"/>
+ <Asset class="0" name="Tap (broken)" icon_url=":/icons/database/Negative/Icons_BrokenTap.png" width="1" height="1"/>
+ <Asset class="0" name="Crime scene" icon_url=":/icons/database/Negative/Icons_CrimeScene.png" width="1" height="1"/>
+ <Asset class="0" name="Electrical outlet" icon_url=":/icons/database/Negative/Icons_ElectricalOutlet.png" width="1" height="1"/>
+ <Asset class="0" name="Fan" icon_url=":/icons/database/Negative/Icons_Fan.png" width="1" height="1"/>
+ <Asset class="0" name="Hospital bed" icon_url=":/icons/database/Negative/Icons_HospitalBed.png" width="1" height="1"/>
+ <Asset class="0" name="Spider (1)" icon_url=":/icons/database/Negative/Icons_Spider01.png" width="1" height="1"/>
+ <Asset class="0" name="Spider (2)" icon_url=":/icons/database/Negative/Icons_Spider02.png" width="1" height="1"/>
+ <Asset class="0" name="Surgical tools" icon_url=":/icons/database/Negative/Icons_SurgicalTools.png" width="1" height="1"/>
+ <Asset class="0" name="Tengu mask" icon_url=":/icons/database/Negative/Icons_TenguMask.png" width="1" height="1"/>
+
+ <Asset class="0" name="Bench" icon_url=":/icons/database/Neutral/Icons_Bench01.png" width="1" height="1"/>
+ <Asset class="0" name="Box (empty)" icon_url=":/icons/database/Neutral/Icons_BoxEmpty.png" width="1" height="1"/>
+ <Asset class="0" name="Box (full)" icon_url=":/icons/database/Neutral/Icons_BoxFull.png" width="1" height="1"/>
+ <Asset class="0" name="Chair" icon_url=":/icons/database/Neutral/Icons_Chair01.png" width="1" height="1"/>
+ <Asset class="0" name="Light (1)" icon_url=":/icons/database/Neutral/Icons_Light01.png" width="1" height="1"/>
+ <Asset class="0" name="Light (2)" icon_url=":/icons/database/Neutral/Icons_Light02.png" width="1" height="1"/>
+ <Asset class="0" name="Light (3)" icon_url=":/icons/database/Neutral/Icons_Light03.png" width="1" height="1"/>
+ <Asset class="0" name="Light (4)" icon_url=":/icons/database/Neutral/Icons_Light04.png" width="1" height="1"/>
+ <Asset class="0" name="Phone" icon_url=":/icons/database/Neutral/Icons_Phone.png" width="1" height="1"/>
+ <Asset class="0" name="Pillow" icon_url=":/icons/database/Neutral/Icons_Pillow.png" width="1" height="1"/>
+ <Asset class="0" name="Pipes" icon_url=":/icons/database/Neutral/Icons_Pipes.png" width="1" height="1"/>
+ <Asset class="0" name="Shelf" icon_url=":/icons/database/Neutral/Icons_Shelf01.png" width="1" height="1"/>
+ <Asset class="0" name="Valve" icon_url=":/icons/database/Neutral/Icons_Valve.png" width="1" height="1"/>
+
+ <Asset class="0" name="Aquarium" icon_url=":/icons/database/Positive/Icons_Aquarium.png" width="1" height="1"/>
+ <Asset class="0" name="Coffee" icon_url=":/icons/database/Positive/Icons_Coffee.png" width="1" height="1"/>
+ <Asset class="0" name="Plant (1)" icon_url=":/icons/database/Positive/Icons_Plant01.png" width="1" height="1"/>
+ <Asset class="0" name="Speakers" icon_url=":/icons/database/Positive/Icons_Speakers.png" width="1" height="1"/>
+ <Asset class="0" name="Trophee" icon_url=":/icons/database/Positive/Icons_Trophee.png" width="1" height="1"/>
 </root>

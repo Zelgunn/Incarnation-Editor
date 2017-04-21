@@ -197,6 +197,18 @@ void Project::loadDatabase()
 
         node = node.nextSibling();
     }
+
+    sortDatabase();
+}
+
+void Project::sortDatabase()
+{
+    std::sort(s_assetDatabase.begin(), s_assetDatabase.end(), Project::compareAssetName);
+}
+
+bool Project::compareAssetName(const QWeakPointer<Asset> a1, const QWeakPointer<Asset> a2)
+{
+    return a1.data()->name() < a2.data()->name();
 }
 
 int Project::assetDatabaseSize()
