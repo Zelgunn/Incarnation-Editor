@@ -27,10 +27,12 @@ Asset::Asset(const QDomElement &elem)
     m_name = elem.attribute("name", "No name");
     m_assetClass = (AssetClass)elem.attribute("class", "0").toInt();
     m_iconPath = elem.attribute("icon_url", "No icon URL");
-    m_size.setWidth(elem.attribute("width", "0").toFloat());
-    m_size.setHeight(elem.attribute("height", "0").toFloat());
+    m_size.setWidth(elem.attribute("length", "1").toFloat());
+    m_size.setHeight(elem.attribute("width", "1").toFloat());
     m_position.setX(elem.attribute("posx", "0").toFloat());
     m_position.setY(elem.attribute("posy", "0").toFloat());
+
+    m_hash = elem.attribute("hash");
 }
 
 void Asset::toXml(QDomDocument *dom, QDomElement *assetElement) const
@@ -38,10 +40,11 @@ void Asset::toXml(QDomDocument *dom, QDomElement *assetElement) const
     assetElement->setAttribute("class", (int)m_assetClass);
     assetElement->setAttribute("name", m_name);
     assetElement->setAttribute("icon_url", m_iconPath);
-    assetElement->setAttribute("width", m_size.width());
-    assetElement->setAttribute("height", m_size.height());
+    assetElement->setAttribute("length", m_size.width());
+    assetElement->setAttribute("width", m_size.height());
     assetElement->setAttribute("posx", m_position.x());
     assetElement->setAttribute("posy", m_position.y());
+    assetElement->setAttribute("hash", m_hash);
 
     for(int i = 0; i < m_parameters.length(); i++)
     {

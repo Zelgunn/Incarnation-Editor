@@ -48,6 +48,7 @@ protected:
     QString m_iconPath;
     QSizeF m_size;
     QPointF m_position;
+    QString m_hash;
 
     QList<QVariant> m_parameters;
     QList<QString> m_parametersNames;

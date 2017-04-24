@@ -41,6 +41,7 @@ private:
     QSizeF m_size;
 
     QString m_name;
+    QString m_hash;
 
     QList<QSharedPointer<Asset> > m_assets;
 };

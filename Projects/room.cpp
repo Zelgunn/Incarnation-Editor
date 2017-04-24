@@ -14,8 +14,9 @@ Room::Room(const QDomElement &elem)
 {
     m_id = s_nextId++;
     m_name = elem.attribute("name");
-    m_size = QSizeF(elem.attribute("width").toFloat(), elem.attribute("height").toFloat());
+    m_size = QSizeF(elem.attribute("length").toFloat(), elem.attribute("width").toFloat());
     m_position = QPointF(elem.attribute("posx").toFloat(), elem.attribute("posy").toFloat());
+    m_hash = elem.attribute("hash", "Default room");
 
     QDomNode node = elem.firstChild();
     QDomElement nodeElem;
@@ -43,12 +44,13 @@ Room::~Room()
 void Room::toXml(QDomDocument *dom, QDomElement *roomElement) const
 {
     roomElement->setAttribute("name", m_name);
+    roomElement->setAttribute("hash", m_hash);
 
     roomElement->setAttribute("posx", m_position.x());
     roomElement->setAttribute("posy", m_position.y());
 
-    roomElement->setAttribute("width", m_size.width());
-    roomElement->setAttribute("height", m_size.height());
+    roomElement->setAttribute("length", m_size.width());
+    roomElement->setAttribute("width", m_size.height());
 
     for(int i = 0; i < m_assets.length(); i++)
     {

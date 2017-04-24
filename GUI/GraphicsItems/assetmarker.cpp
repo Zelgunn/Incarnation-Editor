@@ -6,12 +6,12 @@ AssetMarker::AssetMarker(QWeakPointer<Asset> asset, QGraphicsItem *parent) :
     m_asset = asset;
 
     QPixmap markerPixmap(asset.data()->iconPath());
-    QSizeF size = m_asset.data()->size() * 1000;
+    QSizeF size = m_asset.data()->size() * 100;
     markerPixmap = markerPixmap.scaled(size.toSize());
     setPixmap(markerPixmap);
 
     setTransformOriginPoint(size.width() / 2, size.height() / 2);
-    setScale(0.001);
+    setScale(0.01);
     setCenter(asset.data()->position());
 
     setFlag(ItemIsSelectable, true);
