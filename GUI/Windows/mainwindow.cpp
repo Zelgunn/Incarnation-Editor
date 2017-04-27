@@ -214,7 +214,8 @@ void MainWindow::on_copyProjectButton_clicked()
 void MainWindow::loadRoomInEditor(const QWeakPointer<Room> &room)
 {
     ui->menuTabWidget->setTabEnabled(3, true);
-    m_roomWindow->loadRoom(room);
+    QPixmap roomRender = m_structureWindow->renderSelectedRoom();
+    m_roomWindow->loadRoom(room, roomRender);
     ui->menuTabWidget->setCurrentIndex(3);
 }
 

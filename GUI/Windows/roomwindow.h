@@ -20,15 +20,17 @@ public:
     explicit RoomWindow(QWidget *parent = 0);
     ~RoomWindow();
 
-    void loadRoom(const QWeakPointer<Room> &room);
+    void loadRoom(const QWeakPointer<Room> &room, const QPixmap &roomRender);
     void updateFromProjectData();
 
 protected slots:
     void manualUpdate();
+    void slowUpdate();
 
 private:
     Ui::RoomWindow *ui;
     QTimer *m_timer;
+    QTimer *m_slowTimer;
 };
 
 #endif // ROOMWINDOW_H

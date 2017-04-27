@@ -30,6 +30,10 @@ public:
     void updateHandles();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paintWalls(QPainter *painter);
+    void paintShadow(QPainter *painter);
+    void paintCenter(QPainter *painter);
+    void paintPit(QPainter *painter);
     QRectF boundingRect() const;
     QRectF projectedRect() const;
 

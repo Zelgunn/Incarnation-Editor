@@ -1,6 +1,6 @@
 #include "roomtransformaction.h"
 
-RoomTransformAction::RoomTransformAction(int roomId, QPointF delta)
+RoomTransformAction::RoomTransformAction(int roomId, qreal delta)
 {
     m_roomId = roomId;
     m_delta = delta;

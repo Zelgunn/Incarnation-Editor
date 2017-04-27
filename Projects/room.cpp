@@ -2,7 +2,7 @@
 
 int Room::s_nextId = 0;
 
-Room::Room(const QString &name, const QSizeF &size, const QPointF &position)
+Room::Room(const QString &name, const QSizeF &size, qreal position)
 {
     m_id = s_nextId++;
     m_name = name;
@@ -14,8 +14,9 @@ Room::Room(const QDomElement &elem)
 {
     m_id = s_nextId++;
     m_name = elem.attribute("name");
-    m_size = QSizeF(elem.attribute("length").toFloat(), elem.attribute("width").toFloat());
-    m_position = QPointF(elem.attribute("posx").toFloat(), elem.attribute("posy").toFloat());
+    m_size = QSizeF(elem.attribute("sizex").toFloat(), elem.attribute("sizey").toFloat());
+    m_zSize = elem.attribute("sizez", "3").toFloat();
+    m_position = elem.attribute("posx").toFloat();
     m_hash = elem.attribute("hash", "Default room");
 
     QDomNode node = elem.firstChild();
@@ -30,6 +31,12 @@ Room::Room(const QDomElement &elem)
             {
                 m_assets.append(QSharedPointer<Asset>(new Asset(nodeElem)));
             }
+
+            if(nodeElem.tagName() == "Pit")
+            {
+                Q_ASSERT_X(m_pit == Q_NULLPTR,"Room constructor : XML", "Multiple pits where found in a single room");
+                m_pit = new Pit(nodeElem);
+            }
         }
 
         node = node.nextSibling();
@@ -38,6 +45,10 @@ Room::Room(const QDomElement &elem)
 
 Room::~Room()
 {
+    if(hasPit())
+    {
+        delete m_pit;
+    }
     qDebug() << "room" << m_name << "with id" << m_id << "has been deleted";
 }
 
@@ -46,11 +57,11 @@ void Room::toXml(QDomDocument *dom, QDomElement *roomElement) const
     roomElement->setAttribute("name", m_name);
     roomElement->setAttribute("hash", m_hash);
 
-    roomElement->setAttribute("posx", m_position.x());
-    roomElement->setAttribute("posy", m_position.y());
+    roomElement->setAttribute("posx", m_position);
 
-    roomElement->setAttribute("length", m_size.width());
-    roomElement->setAttribute("width", m_size.height());
+    roomElement->setAttribute("sizex", m_size.width());
+    roomElement->setAttribute("sizey", m_size.height());
+    roomElement->setAttribute("sizez", m_zSize);
 
     for(int i = 0; i < m_assets.length(); i++)
     {
@@ -58,26 +69,28 @@ void Room::toXml(QDomDocument *dom, QDomElement *roomElement) const
         m_assets[i]->toXml(dom, &elem);
         roomElement->appendChild(elem);
     }
+
+    if(hasPit())
+    {
+        QDomElement elem = dom->createElement("Pit");
+        m_pit->toXML(&elem);
+        roomElement->appendChild(elem);
+    }
 }
 
-QPointF Room::getPosition() const
+float Room::getPosition() const
 {
     return m_position;
 }
 
-void Room::setPosition(const QPointF &position)
+void Room::setPosition(const float &position)
 {
     m_position = position;
 }
 
-void Room::moveBy(const QPointF &delta)
+void Room::moveBy(qreal delta)
 {
     m_position += delta;
-}
-
-void Room::moveBy(float x, float y)
-{
-    m_position += QPointF(x, y);
 }
 
 QString Room::getName() const
@@ -98,6 +111,38 @@ QSizeF Room::getSize() const
 void Room::setSize(const QSizeF &size)
 {
     m_size = size;
+}
+
+bool Room::hasPit() const
+{
+    return m_pit != Q_NULLPTR;
+}
+
+Pit *Room::pit() const
+{
+    return m_pit;
+}
+
+QSizeF Room::pitDim() const
+{
+    return m_pit->dimensions();
+}
+
+void Room::removePit()
+{
+    m_pit = Q_NULLPTR;
+}
+
+void Room::setPitDim(const QSizeF &dimensions)
+{
+    if(m_pit == Q_NULLPTR)
+    {
+        m_pit = new Pit(dimensions);
+    }
+    else
+    {
+        m_pit->setDimensions(dimensions);
+    }
 }
 
 int Room::getId() const

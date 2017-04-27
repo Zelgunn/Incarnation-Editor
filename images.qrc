@@ -50,5 +50,6 @@
         <file>database/Positive/Icons_Plant01.png</file>
         <file>database/Positive/Icons_Speakers.png</file>
         <file>database/Positive/Icons_Trophee.png</file>
+        <file>database/Lights/Icons_bulb.png</file>
     </qresource>
 </RCC>

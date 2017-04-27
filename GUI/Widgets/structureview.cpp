@@ -4,18 +4,14 @@ StructureView::StructureView(QWidget *parent):
     QGraphicsView(parent)
 {
     m_scene = new StructureScene;
-    setScene(m_scene);
-    setViewportUpdateMode(NoViewportUpdate);
-    setMouseTracking(true);
+    init();
 }
 
 StructureView::StructureView(StructureScene *scene, QWidget *parent):
     QGraphicsView(scene, parent)
 {
     m_scene = scene;
-    setScene(scene);
-    setViewportUpdateMode(NoViewportUpdate);
-    setMouseTracking(true);
+    init();
 }
 
 void StructureView::setUpProject(Project *project)
@@ -51,6 +47,13 @@ StructureScene *StructureView::scene() const
 QPointF StructureView::cursorPosition() const
 {
     return m_sceneCursorPosition;
+}
+
+void StructureView::init()
+{
+    setScene(m_scene);
+    setViewportUpdateMode(NoViewportUpdate);
+    setMouseTracking(true);
 }
 
 void StructureView::mouseMoveEvent(QMouseEvent *event)

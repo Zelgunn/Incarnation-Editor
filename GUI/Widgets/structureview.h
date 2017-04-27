@@ -27,6 +27,7 @@ public:
     QPointF cursorPosition() const;
 
 protected:
+    void init();
     void mouseMoveEvent(QMouseEvent *event);
 
 private:

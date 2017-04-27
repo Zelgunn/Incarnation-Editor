@@ -26,6 +26,8 @@ public:
 
     QList<RoomMarker *> roomMarkers() const;
 
+    QPixmap renderSelectedRoom();
+
 signals:
     void cursorPositionChanged(QGraphicsSceneMouseEvent *event);
     void selectionChanged(RoomMarker *roomMarker);
@@ -43,6 +45,7 @@ protected slots:
 private:
     QList<RoomMarker *> m_roomMarkers;
     RoomMarker *m_selectedRoomMarker;
+
 };
 
 #endif // STRUCTURESCENE_H

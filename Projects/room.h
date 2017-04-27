@@ -6,28 +6,34 @@
 #include <QPointF>
 
 #include "asset.h"
+#include "pit.h"
 
 #include <QDebug>
 
 class Room
 {
 public:
-    Room(const QString &name, const QSizeF &size = QSizeF(), const QPointF &position = QPointF());
+    Room(const QString &name, const QSizeF &size = QSizeF(), qreal position = 0);
     Room(const QDomElement &elem);
     ~Room();
 
     void toXml(QDomDocument *dom, QDomElement* roomElement) const;
 
-    QPointF getPosition() const;
-    void setPosition(const QPointF &position);
-    void moveBy(const QPointF &delta);
-    void moveBy(float x, float y);
+    float getPosition() const;
+    void setPosition(const float &position);
+    void moveBy(qreal delta);
 
     QString getName() const;
     void setName(const QString &name);
 
     QSizeF getSize() const;
     void setSize(const QSizeF &size);
+
+    bool hasPit() const;
+    Pit *pit() const;
+    QSizeF pitDim() const;
+    void removePit();
+    void setPitDim(const QSizeF &dimensions);
 
     int getId() const;
 
@@ -37,11 +43,16 @@ public:
 private:
     static int s_nextId;
     int m_id;
-    QPointF m_position;
-    QSizeF m_size;
 
     QString m_name;
     QString m_hash;
+
+    float m_position;
+
+    QSizeF m_size;
+    float m_zSize = 3;
+
+    Pit* m_pit = Q_NULLPTR;
 
     QList<QSharedPointer<Asset> > m_assets;
 };

@@ -6,6 +6,7 @@ CreateRoomDialog::CreateRoomDialog(QWidget *parent) :
     ui(new Ui::CreateRoomDialog)
 {
     ui->setupUi(this);
+    updateLayoutFromClass();
 }
 
 CreateRoomDialog::~CreateRoomDialog()
@@ -17,5 +18,22 @@ Room CreateRoomDialog::getRoomValues() const
 {
     QString name = ui->nameLineEdit->text();
     QSizeF size(ui->widthSpinBox->value(), ui->heightSpinBox->value());
-    return Room(name, size);
+    Room room(name, size);
+    if(ui->roomClassComboBox->currentIndex() == 1)
+    {
+        QSizeF pitDim(ui->pitLengthSpinBox->value(), ui->pitDepthSpinBox->value());
+        room.setPitDim(pitDim);
+    }
+    return room;
+}
+
+void CreateRoomDialog::updateLayoutFromClass()
+{
+    ui->pitParametersGroupBox->setVisible(ui->roomClassComboBox->currentIndex() == 1);
+}
+
+void CreateRoomDialog::on_roomClassComboBox_currentIndexChanged(int index)
+{
+    Q_UNUSED(index);
+    updateLayoutFromClass();
 }

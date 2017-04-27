@@ -27,6 +27,7 @@ public:
 
     void setUpProject(Project *project = Q_NULLPTR);
     void unloadProject();
+    QPixmap renderSelectedRoom() const;
 
 public slots:
     void updateFromGUI();

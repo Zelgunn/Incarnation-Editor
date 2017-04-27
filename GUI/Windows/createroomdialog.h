@@ -19,6 +19,12 @@ public:
 
     Room getRoomValues() const;
 
+protected:
+    void updateLayoutFromClass();
+
+private slots:
+    void on_roomClassComboBox_currentIndexChanged(int index);
+
 private:
     Ui::CreateRoomDialog *ui;
 };

@@ -56,12 +56,13 @@ void StructureScene::createRoomMarker(QWeakPointer<Room> room, bool appendAtEnd)
     {
         if(m_roomMarkers.empty())
         {
-            room.data()->setPosition(QPointF(0,0));
+            room.data()->setPosition(0);
         }
         else
         {
             RoomMarker *mostRightMarker = m_roomMarkers.last();
-            room.data()->setPosition(mostRightMarker->pos() + QPointF(mostRightMarker->getSize().width() / 2, 0));
+            qreal position = mostRightMarker->pos().x() + mostRightMarker->getSize().width() / 2;
+            room.data()->setPosition(position);
         }
     }
 
@@ -101,7 +102,7 @@ void StructureScene::updateMarkers()
         RoomMarker *marker = m_roomMarkers[i];
         QWeakPointer<Room> room = marker->getRoomData();
 
-        marker->setPos(room.data()->getPosition());
+        marker->setPos(QPointF(room.data()->getPosition(), 0));
         marker->setSize(room.data()->getSize());
     }
 }
@@ -205,4 +206,17 @@ void StructureScene::emitSceneGeometryChanged()
 QList<RoomMarker *> StructureScene::roomMarkers() const
 {
     return m_roomMarkers;
+}
+
+QPixmap StructureScene::renderSelectedRoom()
+{
+    m_selectedRoomMarker->showHandles(false);
+    QRectF source = m_selectedRoomMarker->boundingRect();
+    source.moveCenter(m_selectedRoomMarker->pos());
+    QPixmap pixmap((m_selectedRoomMarker->getSize() * 50).toSize());
+    QPainter painter(&pixmap);
+    render(&painter, QRectF(), source);
+    pixmap.save("C:/tmp/bidule.png");
+    m_selectedRoomMarker->showHandles(true);
+    return pixmap;
 }

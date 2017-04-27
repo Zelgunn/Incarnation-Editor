@@ -3,29 +3,31 @@
 RoomScene::RoomScene(QObject *parent)
     : QGraphicsScene(parent)
 {
-    m_scaler = addRect(QRectF());
+    init();
 }
 
 RoomScene::RoomScene(const QRectF &sceneRect, QObject *parent)
     : QGraphicsScene(sceneRect, parent)
 {
-    m_scaler = addRect(QRectF());
+    init();
 }
 
 RoomScene::RoomScene(qreal x, qreal y, qreal width, qreal height, QObject *parent)
     : QGraphicsScene(x, y, width, height, parent)
 {
-    m_scaler = addRect(QRectF());
+    init();
 }
 
-void RoomScene::loadRoom(const QWeakPointer<Room> &room)
+void RoomScene::loadRoom(const QWeakPointer<Room> &room, const QPixmap &roomRender)
 {
     unloadRoom();
 
     m_room = room;
-    QSize roomSize = (room.data()->getSize()).toSize();
-    QRect roomRect(- roomSize.width() / 2, - roomSize.height() / 2, roomSize.width(), roomSize.height());
+    QSizeF roomSize = room.data()->getSize();
+    QRectF roomRect(- roomSize.width() / 2, - roomSize.height() / 2, roomSize.width(), roomSize.height());
     m_scaler->setRect(roomRect);
+    m_roomRenderItem->setPixmap(roomRender);
+    m_roomRenderItem->setPos(-roomRender.width()* m_roomRenderItem->scale() / 2 , -roomRender.height() * m_roomRenderItem->scale() / 2);
 
     QList<QWeakPointer<Asset> > roomAssets = m_room.data()->assets();
     for(int i = 0; i < roomAssets.length(); i++)
@@ -162,6 +164,61 @@ void RoomScene::setScale(const qreal &scale)
     m_scale = scale;
     m_scaler->setScale(scale);
     m_scaler->setPen(QPen(QBrush(Qt::black), 2.5 / m_scale));
+}
+
+QGraphicsItem *RoomScene::getSelectedItem() const
+{
+    if(selectedItems().length() == 0)
+        return Q_NULLPTR;
+    else
+        return selectedItems()[0];
+}
+
+void RoomScene::manualUpdate()
+{
+    QGraphicsItem *selectedItem = getSelectedItem();
+    if(selectedItem != Q_NULLPTR)
+    {
+        if(selectedItem != m_rotationHandle)
+        {
+            for(int i = 0; i < m_assetMarkers.length(); i++)
+            {
+                m_assetMarkers[i]->setFakeSelection(m_assetMarkers[i] == selectedItem);
+            }
+
+            m_rotationHandle->show();
+            m_rotationHandle->setHandledItem(selectedItem);
+        }
+        else
+        {
+            for(int i = 0; i < m_assetMarkers.length(); i++)
+            {
+                m_assetMarkers[i]->setFakeSelection(m_assetMarkers[i] == m_rotationHandle->handledItem());
+            }
+        }
+
+        qreal distanceToCenter = m_scale;
+        if(distanceToCenter != m_rotationHandle->distanceToCenter())
+        {
+            m_rotationHandle->setDistanceToCenter(distanceToCenter);
+            m_rotationHandle->updatePos();
+        }
+    }
+    else
+    {
+        m_rotationHandle->setHandledItem(Q_NULLPTR);
+        m_rotationHandle->hide();
+    }
+}
+
+void RoomScene::init()
+{
+    m_scaler = addRect(QRectF());
+    m_roomRenderItem = new QGraphicsPixmapItem(m_scaler);
+    m_roomRenderItem->setScale(1.0 / 50);
+    m_rotationHandle = new RotationHandle(QRectF(-5.5, -5.5, 11, 11));
+    addItem(m_rotationHandle);
+    m_rotationHandle->hide();
 }
 
 QWeakPointer<Room> RoomScene::room() const

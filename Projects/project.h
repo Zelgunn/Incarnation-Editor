@@ -33,7 +33,7 @@ public:
 
     QString getFilepath() const;
     QWeakPointer<Room> addRoom(const Room &room);
-    QWeakPointer<Room> addRoom(const QString &name, const QSizeF &size = QSizeF(), const QPointF &position = QPointF());
+    QWeakPointer<Room> addRoom(const QString &name, const QSizeF &size = QSizeF(), qreal position = 0);
     void removeRoom(QWeakPointer<Room> room);
 
     QList<QWeakPointer<Room> > getRooms() const;

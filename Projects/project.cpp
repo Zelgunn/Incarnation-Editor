@@ -245,7 +245,7 @@ QWeakPointer<Room> Project::addRoom(const Room &room)
     return tmp.toWeakRef();
 }
 
-QWeakPointer<Room> Project::addRoom(const QString &name, const QSizeF &size, const QPointF &position)
+QWeakPointer<Room> Project::addRoom(const QString &name, const QSizeF &size, qreal position)
 {
     QSharedPointer<Room> room(new Room(name, size, position));
     m_rooms.append(room);

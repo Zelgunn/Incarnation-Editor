@@ -47,7 +47,10 @@ SOURCES += main.cpp\
     GUI/Widgets/roomscene.cpp \
     GUI/Widgets/shelflistwidget.cpp \
     GUI/GraphicsItems/assetmarker.cpp \
-    User/Actions/assettransformaction.cpp
+    User/Actions/assettransformaction.cpp \
+    Projects/pit.cpp \
+    GUI/GraphicsItems/rotationhandle.cpp \
+    GUI/Windows/asseteditiondialog.cpp
 
 HEADERS  += GUI/Windows/mainwindow.h \
     GUI/Windows/structurewindow.h \
@@ -71,12 +74,16 @@ HEADERS  += GUI/Windows/mainwindow.h \
     GUI/Widgets/roomscene.h \
     GUI/Widgets/shelflistwidget.h \
     GUI/GraphicsItems/assetmarker.h \
-    User/Actions/assettransformaction.h
+    User/Actions/assettransformaction.h \
+    Projects/pit.h \
+    GUI/GraphicsItems/rotationhandle.h \
+    GUI/Windows/asseteditiondialog.h
 
 FORMS    += GUI/Windows/mainwindow.ui \
     GUI/Windows/structurewindow.ui \
     GUI/Windows/createroomdialog.ui \
-    GUI/Windows/roomwindow.ui
+    GUI/Windows/roomwindow.ui \
+    GUI/Windows/asseteditiondialog.ui
 
 RESOURCES += \
     images.qrc \

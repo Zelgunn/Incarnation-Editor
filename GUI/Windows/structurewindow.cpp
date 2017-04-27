@@ -16,7 +16,7 @@ StructureWindow::StructureWindow(QWidget *parent) :
     ui->roomWidthSpinBox->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
     ui->roomHeightSpinBox->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
 
-    ui->roomInfoDockWidget->close();
+    //ui->roomInfoDockWidget->close();
 
     connect(ui->graphicsView->scene(), &StructureScene::selectionChanged, this, &StructureWindow::setSelectedRoom);
     connect(ui->graphicsView->scene(), &StructureScene::sceneGeometryChanged, this, &StructureWindow::updateFromView);
@@ -50,6 +50,11 @@ void StructureWindow::unloadProject()
     ui->graphicsView->unloadProject();
 }
 
+QPixmap StructureWindow::renderSelectedRoom() const
+{
+    return ui->graphicsView->scene()->renderSelectedRoom();
+}
+
 void StructureWindow::updateFromGUI()
 {
     if(m_blockGUIUpdate)
@@ -78,7 +83,7 @@ void StructureWindow::updateFromView()
     {
         RoomMarker *marker = markers[i];
         QWeakPointer<Room> room = marker->getRoomData();
-        room.data()->setPosition(marker->pos());
+        room.data()->setPosition(marker->pos().x());
         room.data()->setSize(marker->getSize());
     }
 
@@ -118,7 +123,7 @@ void StructureWindow::updateGUI()
         ui->roomHeightSpinBox->setValue(roomSize.height());
         ui->roomWidthSpinBox->setValue(roomSize.width());
 
-        ui->roomInfoDockWidget->show();
+        //ui->roomInfoDockWidget->show();
     }
 
     m_blockGUIUpdate = false;
@@ -227,7 +232,7 @@ void StructureWindow::on_actionNew_room_triggered()
     QWeakPointer<Room> roomPtr = Project::activeProject()->addRoom(roomValues);
 
     RoomMarker *mostRightMarker = ui->graphicsView->scene()->roomMarkers().last();
-    roomPtr.data()->setPosition(mostRightMarker->pos() + QPointF(mostRightMarker->getSize().width() / 2, 0));
+    roomPtr.data()->setPosition(mostRightMarker->pos().x() + mostRightMarker->getSize().width() / 2);
 
     UserAction::addAction(new RoomCreationAction(roomPtr.data()->getId()));
     updateFromProjectData();

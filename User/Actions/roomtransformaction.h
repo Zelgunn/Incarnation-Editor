@@ -12,13 +12,13 @@ class RoomMarker;
 class RoomTransformAction : public UserAction
 {
 public:
-    RoomTransformAction(int roomId, QPointF delta);
+    RoomTransformAction(int roomId, qreal delta);
     void revert();
     void restore();
 
 private:
     int m_roomId;
-    QPointF m_delta;
+    qreal m_delta;
 
 };
 

@@ -5,7 +5,8 @@ RoomMarker::RoomMarker(QWeakPointer<Room> room, QGraphicsItem *parent):
 {
     m_room = room;
     setSize(m_room.data()->getSize()); //OK
-    setPos(m_room.data()->getPosition());
+    QPointF roomPos = QPointF(m_room.data()->getPosition(), 0);
+    setPos(roomPos);
 
     float width = m_viewSize.width();
     float height = m_viewSize.height();
@@ -94,31 +95,66 @@ void RoomMarker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     Q_UNUSED(widget);
     Q_UNUSED(option);
 
-    QPen basePen;
-    basePen.setWidth(5);
-    painter->setPen(basePen);
-
     if(m_moving)
     {
-        QPen shadowPen = basePen;
-        shadowPen.setColor(Qt::gray);
-        painter->setPen(shadowPen);
-
-        painter->drawRect(projectedRect());
-
-        painter->setPen(basePen);
+        paintShadow(painter);
     }
+
+    paintWalls(painter);
+
+    if(m_room.data()->hasPit())
+    {
+        paintPit(painter);
+    }
+
+    if(m_selected && (m_handles[0] != Q_NULLPTR) && m_handles[0]->isVisible())
+    {
+        paintCenter(painter);
+    }
+}
+
+void RoomMarker::paintWalls(QPainter *painter)
+{
+    QPen pen(Qt::black);
+    pen.setWidth(5);
+    painter->setPen(pen);
 
     painter->drawRect(boundingRect());
+}
 
-    if(m_selected)
-    {
-        QRectF a(-3,-3,6,6);
-        painter->setBrush(Qt::green);
-        painter->setPen(Qt::blue);
-        a.moveCenter(transformOriginPoint());
-        painter->drawRect(a);
-    }
+void RoomMarker::paintShadow(QPainter *painter)
+{
+    QPen pen(Qt::gray);
+    pen.setWidth(5);
+    painter->setPen(pen);
+
+    painter->drawRect(projectedRect());
+}
+
+void RoomMarker::paintCenter(QPainter *painter)
+{
+    QRectF a(-3,-3,6,6);
+    a.moveCenter(transformOriginPoint());
+
+    painter->setBrush(Qt::green);
+    painter->setPen(Qt::blue);
+
+    painter->drawRect(a);
+}
+
+void RoomMarker::paintPit(QPainter *painter)
+{
+    qreal pitWidth = m_room.data()->pitDim().width() * UserPreferences::structureEditorZoomRatio();
+    QRectF pitRect = boundingRect();
+    pitRect.setWidth(pitWidth);
+    pitRect.moveCenter(boundingRect().center());
+
+    QPen pen(Qt::black);
+    pen.setWidth(3);
+    painter->setPen(pen);
+    painter->setBrush(Qt::gray);
+
+    painter->drawRect(pitRect);
 }
 
 QRectF RoomMarker::boundingRect() const
@@ -222,7 +258,6 @@ void RoomMarker::updateGeometryFromHandles()
 
 void RoomMarker::updateRoomGeometryFromData()
 {
-    //m_size = m_room.data()->getSize();
     updateHandles();
 }
 
@@ -231,6 +266,7 @@ void RoomMarker::mousePressEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mousePressEvent(event);
 
     m_onMousePressPosition = pos();
+    qDebug() << "press " << m_onMousePressPosition;
     m_moving = true;
 
     setSelected(true);
@@ -241,9 +277,11 @@ void RoomMarker::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsItem::mouseReleaseEvent(event);
 
     m_moving = false;
-    if(m_onMousePressPosition != pos())
+    if(m_onMousePressPosition != event->pos())
     {
-        UserAction::addAction(new RoomTransformAction(m_room.data()->getId(), pos() - m_onMousePressPosition));
+        qDebug() << "release " << event->pos();
+        qreal delta = event->pos().x() - m_onMousePressPosition.x();
+        UserAction::addAction(new RoomTransformAction(m_room.data()->getId(), delta));
         emit geometryChanged();
     }
 }
