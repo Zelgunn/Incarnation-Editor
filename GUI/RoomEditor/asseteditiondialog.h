@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QSpinBox>
 #include <QDoubleSpinBox>
+#include <QLineEdit>
 
 #include "Projects/asset.h"
 
@@ -21,8 +22,10 @@ public:
 
     Asset getAssetValues() const;
 
+    void addParamWidget(const QString &name, QWidget *widget);
     void addSpinBox(const QString &name, int initialValue);
     void addDoubleSpinBox(const QString &name, qreal initialValue);
+    void addLineEdit(const QString &name, const QString &initialValue);
 
 private:
     Ui::AssetEditionDialog *ui;

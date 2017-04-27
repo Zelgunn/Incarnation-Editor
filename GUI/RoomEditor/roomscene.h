@@ -9,10 +9,10 @@
 
 #include "Projects/asset.h"
 #include "Projects/project.h"
-#include "GUI/GraphicsItems/assetmarker.h"
+#include "assetmarker.h"
 #include "Projects/room.h"
-#include "GUI/GraphicsItems/roommarker.h"
-#include "GUI/GraphicsItems/rotationhandle.h"
+#include "GUI/StructureEditor/roommarker.h"
+#include "rotationhandle.h"
 
 #include <QDebug>
 

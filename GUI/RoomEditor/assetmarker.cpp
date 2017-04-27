@@ -68,14 +68,11 @@ void AssetMarker::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void AssetMarker::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsPixmapItem::mouseReleaseEvent(event);
-    QPointF delta;
 
     switch (event->button())
     {
     case Qt::LeftButton:
-        m_asset.data()->setPosition(center());
-        delta = center() - m_onMousePressPosition;
-        UserAction::addAction(new AssetTransformAction(m_asset.data()->getId(), delta));
+        updateAssetPos();
         break;
     case Qt::RightButton:
         showContextMenu(event->screenPos());
@@ -125,6 +122,11 @@ bool AssetMarker::fakeSelection() const
 
 void AssetMarker::setFakeSelection(bool fakeSelection)
 {
+    if(!fakeSelection && m_fakeSelection)
+    {
+
+    }
+
     m_fakeSelection = fakeSelection;
 }
 
@@ -163,4 +165,24 @@ void AssetMarker::updateFromAsset()
     setFlag(ItemIsSelectable, true);
     setFlag(ItemIsMovable, true);
     setFlag(QGraphicsItem::ItemSendsGeometryChanges);
+}
+
+void AssetMarker::updateAssetPos()
+{
+    QPointF delta = center() - m_asset.data()->position();
+    m_asset.data()->setPosition(center());
+
+    UserAction::addAction(new AssetTransformAction(m_asset.data()->getId(), delta));
+}
+
+void AssetMarker::updateAssetRotation()
+{
+    if(rotation() == m_asset.data()->getRotation())
+    {
+        return;
+    }
+
+    qreal rotationDelta = rotation() - m_asset.data()->getRotation();
+    m_asset.data()->setRotation(rotation());
+    UserAction::addAction(new AssetTransformAction(m_asset.data()->getId(), rotationDelta));
 }

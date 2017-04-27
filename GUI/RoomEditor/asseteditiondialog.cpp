@@ -73,6 +73,10 @@ Asset AssetEditionDialog::getAssetValues() const
             break;
         case QVariant::Double:
             parameter = ((QDoubleSpinBox *)widget)->value();
+            break;
+        case QVariant::String:
+            //
+            break;
         default:
             break;
         }
@@ -84,26 +88,36 @@ Asset AssetEditionDialog::getAssetValues() const
     return *m_asset;
 }
 
-void AssetEditionDialog::addSpinBox(const QString &name, int initialValue)
+void AssetEditionDialog::addParamWidget(const QString &name, QWidget *widget)
 {
     int index = ui->customParamsGrid->rowCount();
-    ui->customParamsGrid->addWidget(new QLabel(name), index, 0, 1, 1);
 
+    ui->customParamsGrid->addWidget(new QLabel(name), index, 0, 1, 1);
+    ui->customParamsGrid->addWidget(widget, index, 1, 1, 1);
+
+    m_customParametersWidgets.append(widget);
+}
+
+void AssetEditionDialog::addSpinBox(const QString &name, int initialValue)
+{
     QSpinBox *spinBox = new QSpinBox();
     spinBox->setValue(initialValue);
-    ui->customParamsGrid->addWidget(spinBox, index, 1, 1, 1);
 
-    m_customParametersWidgets.append(spinBox);
+    addParamWidget(name, spinBox);
 }
 
 void AssetEditionDialog::addDoubleSpinBox(const QString &name, qreal initialValue)
 {
-    int index = ui->customParamsGrid->rowCount();
-    ui->customParamsGrid->addWidget(new QLabel(name), index, 0, 1, 1);
-
     QDoubleSpinBox *doubleSpinBox = new QDoubleSpinBox();
     doubleSpinBox->setValue(initialValue);
-    ui->customParamsGrid->addWidget(doubleSpinBox, index, 1, 1, 1);
 
-    m_customParametersWidgets.append(doubleSpinBox);
+    addParamWidget(name, doubleSpinBox);
+}
+
+void AssetEditionDialog::addLineEdit(const QString &name, const QString &initialValue)
+{
+    QLineEdit *lineEdit = new QLineEdit();
+    lineEdit->setText(initialValue);
+
+    addParamWidget(name, lineEdit);
 }

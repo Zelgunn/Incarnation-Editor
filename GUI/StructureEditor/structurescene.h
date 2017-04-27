@@ -3,7 +3,7 @@
 
 #include <QGraphicsScene>
 
-#include "GUI/GraphicsItems/roommarker.h"
+#include "roommarker.h"
 #include "Projects/project.h"
 
 class StructureScene : public QGraphicsScene

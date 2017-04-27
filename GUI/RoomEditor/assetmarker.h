@@ -11,7 +11,7 @@
 #include "Projects/project.h"
 #include "User/Actions/assettransformaction.h"
 #include "rotationhandle.h"
-#include "GUI/Windows/asseteditiondialog.h"
+#include "asseteditiondialog.h"
 
 class AssetMarker : public QObject, public QGraphicsPixmapItem
 {
@@ -32,6 +32,8 @@ public:
     void showContextMenu(const QPoint &pos);
 
     void updateFromAsset();
+    void updateAssetPos();
+    void updateAssetRotation();
 
 protected:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

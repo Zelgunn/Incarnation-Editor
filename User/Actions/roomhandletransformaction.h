@@ -2,7 +2,7 @@
 #define ROOMHANDLETRANSFORMACTION_H
 
 #include "User/useraction.h"
-#include "GUI/GraphicsItems/handle.h"
+#include "GUI/StructureEditor/handle.h"
 
 class Handle;
 

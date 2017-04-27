@@ -163,7 +163,7 @@
   <customwidget>
    <class>StructureView</class>
    <extends>QGraphicsView</extends>
-   <header location="global">GUI/Widgets/structureview.h</header>
+   <header location="global">GUI/StructureEditor/structureview.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -7,9 +7,9 @@
 #include <QLabel>
 
 #include "Projects/room.h"
-#include "GUI/Widgets/structureview.h"
+#include "structureview.h"
 #include "Projects/project.h"
-#include "GUI/Windows/createroomdialog.h"
+#include "createroomdialog.h"
 #include "User/Actions/roomcreationaction.h"
 #include "User/Actions/roomdeletionaction.h"
 

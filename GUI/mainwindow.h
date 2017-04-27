@@ -15,8 +15,8 @@
 #include "User/useraction.h"
 #include "Projects/projectmanager.h"
 #include "Projects/project.h"
-#include "structurewindow.h"
-#include "roomwindow.h"
+#include "GUI/StructureEditor/structurewindow.h"
+#include "GUI/RoomEditor/roomwindow.h"
 
 #include <QDebug>
 

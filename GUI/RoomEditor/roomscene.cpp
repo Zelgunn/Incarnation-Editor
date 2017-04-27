@@ -179,6 +179,12 @@ void RoomScene::manualUpdate()
     QGraphicsItem *selectedItem = getSelectedItem();
     if(selectedItem != Q_NULLPTR)
     {
+        qreal distanceToCenter = m_scale;
+        if(distanceToCenter != m_rotationHandle->distanceToCenter())
+        {
+            m_rotationHandle->setDistanceToCenter(distanceToCenter);
+        }
+
         if(selectedItem != m_rotationHandle)
         {
             for(int i = 0; i < m_assetMarkers.length(); i++)
@@ -188,6 +194,7 @@ void RoomScene::manualUpdate()
 
             m_rotationHandle->show();
             m_rotationHandle->setHandledItem(selectedItem);
+            m_rotationHandle->updatePos();
         }
         else
         {
@@ -195,13 +202,6 @@ void RoomScene::manualUpdate()
             {
                 m_assetMarkers[i]->setFakeSelection(m_assetMarkers[i] == m_rotationHandle->handledItem());
             }
-        }
-
-        qreal distanceToCenter = m_scale;
-        if(distanceToCenter != m_rotationHandle->distanceToCenter())
-        {
-            m_rotationHandle->setDistanceToCenter(distanceToCenter);
-            m_rotationHandle->updatePos();
         }
     }
     else

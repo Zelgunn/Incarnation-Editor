@@ -25,65 +25,68 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-    GUI/Windows/mainwindow.cpp \
-    GUI/Windows/structurewindow.cpp \
+    GUI/mainwindow.cpp \
+    GUI/StructureEditor/structurewindow.cpp \
     User/useraction.cpp \
     User/userpreferences.cpp \
     Projects/projectmanager.cpp \
     Projects/project.cpp \
-    GUI/GraphicsItems/roommarker.cpp \
+    GUI/StructureEditor/roommarker.cpp \
     Projects/room.cpp \
-    GUI/GraphicsItems/handle.cpp \
-    GUI/Widgets/structureview.cpp \
-    GUI/Widgets/structurescene.cpp \
+    GUI/StructureEditor/handle.cpp \
+    GUI/StructureEditor/structureview.cpp \
+    GUI/StructureEditor/structurescene.cpp \
     User/Actions/roomtransformaction.cpp \
     User/Actions/roomhandletransformaction.cpp \
-    GUI/Windows/createroomdialog.cpp \
+    GUI/StructureEditor/createroomdialog.cpp \
     User/Actions/roomcreationaction.cpp \
     User/Actions/roomdeletionaction.cpp \
     Projects/asset.cpp \
-    GUI/Windows/roomwindow.cpp \
-    GUI/Widgets/roomview.cpp \
-    GUI/Widgets/roomscene.cpp \
-    GUI/Widgets/shelflistwidget.cpp \
-    GUI/GraphicsItems/assetmarker.cpp \
+    GUI/RoomEditor/roomwindow.cpp \
+    GUI/RoomEditor/roomview.cpp \
+    GUI/RoomEditor/roomscene.cpp \
+    GUI/RoomEditor/shelflistwidget.cpp \
+    GUI/RoomEditor/assetmarker.cpp \
     User/Actions/assettransformaction.cpp \
     Projects/pit.cpp \
-    GUI/GraphicsItems/rotationhandle.cpp \
-    GUI/Windows/asseteditiondialog.cpp
+    GUI/RoomEditor/rotationhandle.cpp \
+    GUI/RoomEditor/asseteditiondialog.cpp \
+    GUI/TimelineEditor/timelinewindow.cpp
 
-HEADERS  += GUI/Windows/mainwindow.h \
-    GUI/Windows/structurewindow.h \
+HEADERS  += GUI/mainwindow.h \
+    GUI/StructureEditor/structurewindow.h \
     User/useraction.h \
     User/userpreferences.h \
     Projects/projectmanager.h \
     Projects/project.h \
-    GUI/GraphicsItems/roommarker.h \
+    GUI/StructureEditor/roommarker.h \
     Projects/room.h \
-    GUI/GraphicsItems/handle.h \
-    GUI/Widgets/structureview.h \
-    GUI/Widgets/structurescene.h \
+    GUI/StructureEditor/handle.h \
+    GUI/StructureEditor/structureview.h \
+    GUI/StructureEditor/structurescene.h \
     User/Actions/roomtransformaction.h \
     User/Actions/roomhandletransformaction.h \
-    GUI/Windows/createroomdialog.h \
+    GUI/StructureEditor/createroomdialog.h \
     User/Actions/roomcreationaction.h \
     User/Actions/roomdeletionaction.h \
     Projects/asset.h \
-    GUI/Windows/roomwindow.h \
-    GUI/Widgets/roomview.h \
-    GUI/Widgets/roomscene.h \
-    GUI/Widgets/shelflistwidget.h \
-    GUI/GraphicsItems/assetmarker.h \
+    GUI/RoomEditor/roomwindow.h \
+    GUI/RoomEditor/roomview.h \
+    GUI/RoomEditor/roomscene.h \
+    GUI/RoomEditor/shelflistwidget.h \
+    GUI/RoomEditor/assetmarker.h \
     User/Actions/assettransformaction.h \
     Projects/pit.h \
-    GUI/GraphicsItems/rotationhandle.h \
-    GUI/Windows/asseteditiondialog.h
+    GUI/RoomEditor/rotationhandle.h \
+    GUI/RoomEditor/asseteditiondialog.h \
+    GUI/TimelineEditor/timelinewindow.h
 
-FORMS    += GUI/Windows/mainwindow.ui \
-    GUI/Windows/structurewindow.ui \
-    GUI/Windows/createroomdialog.ui \
-    GUI/Windows/roomwindow.ui \
-    GUI/Windows/asseteditiondialog.ui
+FORMS    += GUI/mainwindow.ui \
+    GUI/StructureEditor/structurewindow.ui \
+    GUI/StructureEditor/createroomdialog.ui \
+    GUI/RoomEditor/roomwindow.ui \
+    GUI/RoomEditor/asseteditiondialog.ui \
+    GUI/TimelineEditor/timelinewindow.ui
 
 RESOURCES += \
     images.qrc \
