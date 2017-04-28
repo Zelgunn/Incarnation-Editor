@@ -8,6 +8,8 @@
 
 #include "room.h"
 #include "asset.h"
+#include "event.h"
+#include "trigger.h"
 
 #define ASSET_DB_PATH ":/all/database/assets.xml"
 
@@ -42,12 +44,20 @@ public:
     QList<QWeakPointer<Asset> > getAssets() const;
     QWeakPointer<Asset> getAssetWithID(int id);
 
+    QList<QWeakPointer<Event> > getEvents() const;
+    void addEvent(Event *event);
+
+    QList<QWeakPointer<Trigger> > getTriggers() const;
+    QWeakPointer<Trigger> getTriggerWithID(const QString &id);
+
 private:
     static Project *s_activeProject;
     QString m_projectFilepath;
     bool m_saved = false;
 
     QList<QSharedPointer<Room> > m_rooms;
+    QList<QSharedPointer<Event> > m_events;
+    QList<QSharedPointer<Trigger> > m_triggers;
 
     static QList<QSharedPointer<Asset> > s_assetDatabase;
 };

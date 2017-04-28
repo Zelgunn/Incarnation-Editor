@@ -6,7 +6,6 @@
 #include <QMimeData>
 #include <QFile>
 
-
 #include "Projects/asset.h"
 #include "Projects/project.h"
 #include "assetmarker.h"

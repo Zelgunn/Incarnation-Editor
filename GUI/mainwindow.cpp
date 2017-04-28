@@ -9,6 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
+    m_timelineWindow = new TimelineWindow;
+    ui->timelineTabLayout->addWidget(m_timelineWindow);
+
     m_structureWindow = new StructureWindow;
     ui->structureTabLayout->addWidget(m_structureWindow);
     connect(m_structureWindow, &StructureWindow::roomEditionModeTriggered, this, &MainWindow::loadRoomInEditor);
@@ -87,8 +90,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     {
         QMessageBox messageBox(this);
         messageBox.setText(tr("Unsaved changed were made.\nDo you want to save your project ?"));
-        messageBox.setStandardButtons(QMessageBox::Save | QMessageBox::No | QMessageBox::Abort);
-        messageBox.setIcon(QMessageBox::Warning);
+        messageBox.setStandardButtons(QMessageBox::Save | QMessageBox::No | QMessageBox::Cancel);
         messageBox.setWindowTitle(windowTitle() + ": Save project ?");
         int userChoice = messageBox.exec();
 
@@ -97,7 +99,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
             Project::activeProject()->save();
         }
 
-        closeWindow = (userChoice != QMessageBox::Abort);
+        closeWindow = ((userChoice != QMessageBox::Cancel) && (userChoice != QMessageBox::Abort));
     }
 
     if(closeWindow)

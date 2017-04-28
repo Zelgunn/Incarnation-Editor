@@ -79,6 +79,7 @@ private:
     QTranslator m_translator;
     ProjectManager m_projectManager;
 
+    TimelineWindow *m_timelineWindow;
     StructureWindow *m_structureWindow;
     RoomWindow *m_roomWindow;
 

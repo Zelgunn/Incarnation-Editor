@@ -1,4 +1,4 @@
-#include "GUI/Windows/mainwindow.h"
+#include "GUI/mainwindow.h"
 #include <QApplication>
 #include <QTextCodec>
 

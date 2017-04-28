@@ -51,7 +51,7 @@
         </property>
         <widget class="QWidget" name="homeTab">
          <attribute name="icon">
-          <iconset resource="../../images.qrc">
+          <iconset resource="../images.qrc">
            <normaloff>:/icons/icons/Home.png</normaloff>:/icons/icons/Home.png</iconset>
          </attribute>
          <attribute name="title">
@@ -91,7 +91,7 @@
                <string>New project</string>
               </property>
               <property name="icon">
-               <iconset resource="../../images.qrc">
+               <iconset resource="../images.qrc">
                 <normaloff>:/icons/icons/NewFile.png</normaloff>:/icons/icons/NewFile.png</iconset>
               </property>
               <property name="iconSize">
@@ -117,7 +117,7 @@
                <string>Copy project</string>
               </property>
               <property name="icon">
-               <iconset resource="../../images.qrc">
+               <iconset resource="../images.qrc">
                 <normaloff>:/icons/icons/CopyFile.png</normaloff>:/icons/icons/CopyFile.png</iconset>
               </property>
               <property name="iconSize">
@@ -150,7 +150,7 @@
                <string>Open project</string>
               </property>
               <property name="icon">
-               <iconset resource="../../images.qrc">
+               <iconset resource="../images.qrc">
                 <normaloff>:/icons/icons/OpenFile.png</normaloff>:/icons/icons/OpenFile.png</iconset>
               </property>
               <property name="iconSize">
@@ -203,7 +203,7 @@
         </widget>
         <widget class="QWidget" name="timelineTab">
          <attribute name="icon">
-          <iconset resource="../../images.qrc">
+          <iconset resource="../images.qrc">
            <normaloff>:/icons/icons/Time.png</normaloff>:/icons/icons/Time.png</iconset>
          </attribute>
          <attribute name="title">
@@ -220,7 +220,7 @@
         </widget>
         <widget class="QWidget" name="structureTab">
          <attribute name="icon">
-          <iconset resource="../../images.qrc">
+          <iconset resource="../images.qrc">
            <normaloff>:/icons/icons/Plan.png</normaloff>:/icons/icons/Plan.png</iconset>
          </attribute>
          <attribute name="title">
@@ -237,7 +237,7 @@
         </widget>
         <widget class="QWidget" name="roomTab">
          <attribute name="icon">
-          <iconset resource="../../images.qrc">
+          <iconset resource="../images.qrc">
            <normaloff>:/icons/icons/Room.png</normaloff>:/icons/icons/Room.png</iconset>
          </attribute>
          <attribute name="title">
@@ -254,7 +254,7 @@
         </widget>
         <widget class="QWidget" name="settingsTab">
          <attribute name="icon">
-          <iconset resource="../../images.qrc">
+          <iconset resource="../images.qrc">
            <normaloff>:/icons/icons/Settings.png</normaloff>:/icons/icons/Settings.png</iconset>
          </attribute>
          <attribute name="title">
@@ -521,7 +521,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="../../images.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections/>
 </ui>

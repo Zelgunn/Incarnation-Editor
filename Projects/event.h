@@ -1,28 +1,48 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-#include <QtGlobal>
-#include <QFlags>
+#include <QDomElement>
+#include <QWeakPointer>
+#include <QColor>
+
+#include "trigger.h"
 
 class Event
 {
 public:
-    enum Option
-    {
+    Event(const QString &name, const qreal &start = 0, const qreal &duration = -1, const qreal &period = -1);
+    Event(const QDomElement &eventElem);
+    void toXML(QDomElement *eventElem);
+    void linkToTriggers(const QList<QWeakPointer<Trigger>> &triggers);
 
-        Repeated
-    };
-    Q_DECLARE_FLAGS(Options, Option)
+    QStringList triggersIDs() const;
+    void setTriggersIDs(const QList<QString> &triggersIDs);
 
-    Event();
+    QString name() const;
+    void setName(const QString &name);
+
+    qreal start() const;
+    void setStart(const qreal &start);
+
+    qreal duration() const;
+    void setDuration(const qreal &duration);
+
+    qreal period() const;
+    void setPeriod(const qreal &period);
+
+    QColor color() const;
+    void setColor(const QColor &color);
 
 protected:
-    Option m_option;
-    qreal m_start;
-    qreal m_duration;
-    qreal m_period;
-};
+    QString m_name;
+    qreal m_start = 0;
+    qreal m_duration = -1;
+    qreal m_period = -1;
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(Event::Options)
+    QStringList m_triggersIDs;
+    QList<QWeakPointer<Trigger>> m_triggers;
+
+    QColor m_color;
+};
 
 #endif // EVENT_H

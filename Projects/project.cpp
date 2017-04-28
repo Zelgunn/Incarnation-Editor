@@ -130,9 +130,32 @@ bool Project::load()
             {
                 m_rooms.append(QSharedPointer<Room>(new Room(elem)));
             }
+
+            if(elem.tagName() == "Event")
+            {
+                m_events.append(QSharedPointer<Event>(new Event(elem)));
+            }
+
+            if(elem.tagName() == "Trigger")
+            {
+                m_triggers.append(QSharedPointer<Trigger>(new Trigger(elem)));
+            }
         }
 
         node = node.nextSibling();
+    }
+
+    for(int i = 0; i < m_events.length(); i++)
+    {
+        QList<QWeakPointer<Trigger> > triggers;
+        QStringList triggersIDs = m_events[i]->triggersIDs();
+
+        for(int j = 0; j < triggersIDs.length(); j++)
+        {
+            triggers.append(getTriggerWithID(triggersIDs[j]));
+        }
+
+        m_events[i]->linkToTriggers(triggers);
     }
 
     return true;
@@ -163,6 +186,20 @@ bool Project::save()
     {
         elem = dom.createElement("Room");
         m_rooms[i]->toXml(&dom, &elem);
+        root.appendChild(elem);
+    }
+
+    for(int i = 0; i < m_triggers.length(); i++)
+    {
+        elem = dom.createElement("Trigger");
+        m_triggers[i]->toXML(&elem);
+        root.appendChild(elem);
+    }
+
+    for(int i = 0; i < m_events.length(); i++)
+    {
+        elem = dom.createElement("Event");
+        m_events[i]->toXML(&elem);
         root.appendChild(elem);
     }
 
@@ -318,4 +355,45 @@ QWeakPointer<Asset> Project::getAssetWithID(int id)
 
     qDebug() << "WARNING : No asset with id" << id;
     return QWeakPointer<Asset>(Q_NULLPTR);
+}
+
+QList<QWeakPointer<Event> > Project::getEvents() const
+{
+    QList<QWeakPointer<Event> > events;
+    foreach (QSharedPointer<Event> event, m_events)
+    {
+        events.append(event.toWeakRef());
+    }
+
+    return events;
+}
+
+void Project::addEvent(Event *event)
+{
+    m_events.append(QSharedPointer<Event>(event));
+}
+
+QList<QWeakPointer<Trigger> > Project::getTriggers() const
+{
+    QList<QWeakPointer<Trigger> > triggers;
+    foreach (QSharedPointer<Trigger> trigger, m_triggers)
+    {
+        triggers.append(trigger.toWeakRef());
+    }
+
+    return triggers;
+}
+
+QWeakPointer<Trigger> Project::getTriggerWithID(const QString &id)
+{
+    foreach (QSharedPointer<Trigger> trigger, m_triggers)
+    {
+        if(trigger.data()->id() == id)
+        {
+            return trigger.toWeakRef();
+        }
+    }
+
+    qDebug() << "No trigger with given ID :" << id;
+    return QWeakPointer<Trigger>(Q_NULLPTR);
 }

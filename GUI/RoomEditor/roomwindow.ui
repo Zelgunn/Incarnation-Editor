@@ -141,12 +141,12 @@
   <customwidget>
    <class>RoomView</class>
    <extends>QGraphicsView</extends>
-   <header location="global">GUI/Widgets/roomview.h</header>
+   <header>roomview.h</header>
   </customwidget>
   <customwidget>
    <class>ShelfListWidget</class>
    <extends>QListWidget</extends>
-   <header location="global">GUI/Widgets/shelflistwidget.h</header>
+   <header>shelflistwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>
