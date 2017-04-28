@@ -51,7 +51,10 @@ SOURCES += main.cpp\
     Projects/pit.cpp \
     GUI/RoomEditor/rotationhandle.cpp \
     GUI/RoomEditor/asseteditiondialog.cpp \
-    GUI/TimelineEditor/timelinewindow.cpp
+    GUI/TimelineEditor/timelinewindow.cpp \
+    Projects/event.cpp \
+    GUI/TimelineEditor/graphicseventitem.cpp \
+    Projects/trigger.cpp
 
 HEADERS  += GUI/mainwindow.h \
     GUI/StructureEditor/structurewindow.h \
@@ -79,7 +82,10 @@ HEADERS  += GUI/mainwindow.h \
     Projects/pit.h \
     GUI/RoomEditor/rotationhandle.h \
     GUI/RoomEditor/asseteditiondialog.h \
-    GUI/TimelineEditor/timelinewindow.h
+    GUI/TimelineEditor/timelinewindow.h \
+    Projects/event.h \
+    GUI/TimelineEditor/graphicseventitem.h \
+    Projects/trigger.h
 
 FORMS    += GUI/mainwindow.ui \
     GUI/StructureEditor/structurewindow.ui \

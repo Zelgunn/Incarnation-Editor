@@ -29,9 +29,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    UserPreferences::saveUserPreferences();
-    Project::activeProject()->save();
-
     delete ui;
 }
 
@@ -78,6 +75,39 @@ void MainWindow::paintEvent(QPaintEvent *event)
     QMainWindow::paintEvent(event);
 
     ui->settingsSaveButton->setEnabled(UserPreferences::dirty());
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    UserPreferences::saveUserPreferences();
+
+    bool closeWindow = true;
+
+    if(Project::activeProject() != Q_NULLPTR)
+    {
+        QMessageBox messageBox(this);
+        messageBox.setText(tr("Unsaved changed were made.\nDo you want to save your project ?"));
+        messageBox.setStandardButtons(QMessageBox::Save | QMessageBox::No | QMessageBox::Abort);
+        messageBox.setIcon(QMessageBox::Warning);
+        messageBox.setWindowTitle(windowTitle() + ": Save project ?");
+        int userChoice = messageBox.exec();
+
+        if(userChoice == QMessageBox::Save)
+        {
+            Project::activeProject()->save();
+        }
+
+        closeWindow = (userChoice != QMessageBox::Abort);
+    }
+
+    if(closeWindow)
+    {
+        event->accept();
+    }
+    else
+    {
+        event->ignore();
+    }
 }
 
 void MainWindow::setUserLanguage(const UserLanguage &language)

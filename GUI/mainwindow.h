@@ -10,6 +10,7 @@
 #include <QToolBar>
 #include <QListWidgetItem>
 #include <QShortcut>
+#include <QMessageBox>
 
 #include "User/userpreferences.h"
 #include "User/useraction.h"
@@ -17,6 +18,7 @@
 #include "Projects/project.h"
 #include "GUI/StructureEditor/structurewindow.h"
 #include "GUI/RoomEditor/roomwindow.h"
+#include "GUI/TimelineEditor/timelinewindow.h"
 
 #include <QDebug>
 
@@ -49,6 +51,7 @@ public:
 protected:
     void changeEvent(QEvent *event);
     void paintEvent(QPaintEvent* event);
+    void closeEvent(QCloseEvent *event);
 
 private slots:
     void on_newProjectButton_clicked();
