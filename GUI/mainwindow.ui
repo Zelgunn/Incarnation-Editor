@@ -325,7 +325,7 @@
             <item row="0" column="0" colspan="5">
              <widget class="QTabWidget" name="settingsTabsWidget">
               <property name="currentIndex">
-               <number>2</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="generalSettingsTab">
                <attribute name="title">
@@ -493,7 +493,7 @@
                   <item row="0" column="3">
                    <widget class="QLabel" name="structureEditorZoomValueLabel">
                     <property name="text">
-                     <string>100%</string>
+                     <string notr="true">100%</string>
                     </property>
                    </widget>
                   </item>

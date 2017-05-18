@@ -64,7 +64,7 @@
         <locale language="English" country="UnitedStates"/>
        </property>
        <property name="suffix">
-        <string> min</string>
+        <string notr="true"> min</string>
        </property>
        <property name="maximum">
         <number>60</number>
@@ -90,7 +90,7 @@
         <locale language="English" country="UnitedStates"/>
        </property>
        <property name="suffix">
-        <string> min</string>
+        <string notr="true"> min</string>
        </property>
        <property name="prefix">
         <string/>
@@ -113,7 +113,7 @@
         <locale language="English" country="UnitedStates"/>
        </property>
        <property name="suffix">
-        <string> min</string>
+        <string notr="true"> min</string>
        </property>
        <property name="maximum">
         <number>60</number>
@@ -139,7 +139,7 @@
         <bool>false</bool>
        </property>
        <property name="suffix">
-        <string> min</string>
+        <string notr="true"> min</string>
        </property>
        <property name="maximum">
         <number>60</number>
@@ -172,7 +172,7 @@
         <bool>false</bool>
        </property>
        <property name="suffix">
-        <string> sec</string>
+        <string notr="true"> sec</string>
        </property>
        <property name="maximum">
         <number>60</number>
@@ -188,7 +188,7 @@
         <locale language="English" country="UnitedStates"/>
        </property>
        <property name="suffix">
-        <string> sec</string>
+        <string notr="true"> sec</string>
        </property>
        <property name="maximum">
         <number>3600</number>
@@ -204,7 +204,7 @@
         <locale language="English" country="UnitedStates"/>
        </property>
        <property name="suffix">
-        <string> sec</string>
+        <string notr="true"> sec</string>
        </property>
        <property name="maximum">
         <number>3600</number>
@@ -217,7 +217,7 @@
         <locale language="English" country="UnitedStates"/>
        </property>
        <property name="suffix">
-        <string> sec</string>
+        <string notr="true"> sec</string>
        </property>
        <property name="maximum">
         <number>3600</number>

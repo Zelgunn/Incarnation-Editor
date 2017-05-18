@@ -58,7 +58,8 @@ SOURCES += main.cpp\
     GUI/TimelineEditor/timelineview.cpp \
     GUI/TimelineEditor/timelinescene.cpp \
     GUI/TimelineEditor/neweventdialog.cpp \
-    GUI/TimelineEditor/colorwidget.cpp
+    GUI/TimelineEditor/colorwidget.cpp \
+    GUI/TimelineEditor/timecursor.cpp
 
 HEADERS  += GUI/mainwindow.h \
     GUI/StructureEditor/structurewindow.h \
@@ -93,7 +94,8 @@ HEADERS  += GUI/mainwindow.h \
     GUI/TimelineEditor/timelineview.h \
     GUI/TimelineEditor/timelinescene.h \
     GUI/TimelineEditor/neweventdialog.h \
-    GUI/TimelineEditor/colorwidget.h
+    GUI/TimelineEditor/colorwidget.h \
+    GUI/TimelineEditor/timecursor.h
 
 FORMS    += GUI/mainwindow.ui \
     GUI/StructureEditor/structurewindow.ui \

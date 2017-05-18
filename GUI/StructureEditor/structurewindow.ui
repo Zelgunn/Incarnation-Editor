@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Structure window</string>
+   <string notr="true">Structure window</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -64,7 +64,11 @@
         </widget>
        </item>
        <item row="0" column="3">
-        <widget class="QLineEdit" name="roomNameLineEdit"/>
+        <widget class="QLineEdit" name="roomNameLineEdit">
+         <property name="text">
+          <string notr="true"/>
+         </property>
+        </widget>
        </item>
        <item row="0" column="0" colspan="3">
         <widget class="QLabel" name="roomNameLabel">
@@ -120,14 +124,14 @@
        <item row="2" column="3">
         <widget class="QDoubleSpinBox" name="roomWidthSpinBox">
          <property name="suffix">
-          <string> m</string>
+          <string notr="true"> m</string>
          </property>
         </widget>
        </item>
        <item row="3" column="3">
         <widget class="QDoubleSpinBox" name="roomHeightSpinBox">
          <property name="suffix">
-          <string> m</string>
+          <string notr="true"> m</string>
          </property>
          <property name="decimals">
           <number>2</number>

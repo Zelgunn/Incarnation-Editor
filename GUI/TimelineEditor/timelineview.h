@@ -2,8 +2,12 @@
 #define TIMELINEVIEW_H
 
 #include <QGraphicsView>
+#include <QResizeEvent>
+#include <QMouseEvent>
 
 #include "timelinescene.h"
+
+#include <QDebug>
 
 class TimelineView : public QGraphicsView
 {
@@ -18,6 +22,8 @@ public:
 
 protected:
     void init();
+    void resizeEvent(QResizeEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 
 private:
     TimelineScene *m_scene;

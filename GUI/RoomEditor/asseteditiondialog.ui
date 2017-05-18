@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string notr="true">Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
@@ -58,7 +58,7 @@
              <locale language="English" country="UnitedStates"/>
             </property>
             <property name="suffix">
-             <string>%</string>
+             <string notr="true">%</string>
             </property>
             <property name="decimals">
              <number>1</number>
@@ -97,7 +97,7 @@
              <locale language="English" country="UnitedStates"/>
             </property>
             <property name="suffix">
-             <string> m</string>
+             <string notr="true"> m</string>
             </property>
             <property name="minimum">
              <double>-100.000000000000000</double>
@@ -120,7 +120,7 @@
              <locale language="English" country="UnitedStates"/>
             </property>
             <property name="suffix">
-             <string> m</string>
+             <string notr="true"> m</string>
             </property>
             <property name="minimum">
              <double>-100.000000000000000</double>
@@ -131,7 +131,11 @@
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QLineEdit" name="nameLineEdit"/>
+           <widget class="QLineEdit" name="nameLineEdit">
+            <property name="text">
+             <string notr="true"/>
+            </property>
+           </widget>
           </item>
           <item row="2" column="3">
            <widget class="QDoubleSpinBox" name="posYSpinBox">
@@ -139,7 +143,7 @@
              <locale language="English" country="UnitedStates"/>
             </property>
             <property name="suffix">
-             <string> m</string>
+             <string notr="true"> m</string>
             </property>
             <property name="minimum">
              <double>-100.000000000000000</double>
@@ -159,7 +163,7 @@
           <item row="4" column="3">
            <widget class="QDoubleSpinBox" name="rotationSpinBox">
             <property name="suffix">
-             <string>°</string>
+             <string notr="true">°</string>
             </property>
             <property name="decimals">
              <number>1</number>

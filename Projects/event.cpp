@@ -78,6 +78,15 @@ qreal Event::duration() const
 void Event::setDuration(const qreal &duration)
 {
     m_duration = duration;
+    if((m_duration >= 0) && (m_duration <= MIN_EVENT_DURATION))
+    {
+        m_duration = MIN_EVENT_DURATION;
+    }
+}
+
+bool Event::isPunctual() const
+{
+    return m_duration < 0;
 }
 
 qreal Event::period() const

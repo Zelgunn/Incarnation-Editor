@@ -34,4 +34,16 @@ void TimelineView::init()
     setAlignment(Qt::AlignLeft | Qt::AlignTop);
     //setViewportUpdateMode(NoViewportUpdate);
     QGraphicsView::setScene(m_scene);
+    setMouseTracking(true);
+}
+
+void TimelineView::resizeEvent(QResizeEvent *event)
+{
+    QGraphicsView::resizeEvent(event);
+    m_scene->updateItemsSize(QSizeF(width() - 3, height() - 3));
+}
+
+void TimelineView::mouseMoveEvent(QMouseEvent *event)
+{
+    QGraphicsView::mouseMoveEvent(event);
 }

@@ -7,6 +7,8 @@
 
 #include "trigger.h"
 
+#define MIN_EVENT_DURATION 1
+
 class Event
 {
 public:
@@ -26,6 +28,7 @@ public:
 
     qreal duration() const;
     void setDuration(const qreal &duration);
+    bool isPunctual() const;
 
     qreal period() const;
     void setPeriod(const qreal &period);
