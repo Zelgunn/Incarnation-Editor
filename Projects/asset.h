@@ -7,31 +7,21 @@
 #include <QUrl>
 #include <QSize>
 
+#include "Projects/assetmodel.h"
 #include "Projects/trigger.h"
 
 #include <QDebug>
 
-enum AssetClass
-{
-    None
-};
-
 class Asset
 {
 public:
+    Asset(const AssetModel &model);
     Asset(const QDomElement &elem);
     void toXml(QDomDocument* dom, QDomElement* assetElement) const;
 
     QString name() const;
     void setName(const QString &name);
 
-    AssetClass assetClass() const;
-    void setAssetClass(const AssetClass &assetClass);
-
-    QString iconPath() const;
-    void setIconPath(const QString &iconPath);
-
-    //QSizeF size() const;
     void setSize(const QSizeF &size);
 
     QPointF position() const;
@@ -65,17 +55,15 @@ public:
 
     void copy(const Asset &other);
 
-    QList<Trigger> getTriggers() const;
-    void setTriggers(const QList<Trigger> &triggers);
+    QString getModelID() const;
+    void setModelID(const QString &modelID);
 
 protected:
     static int s_nextId;
     int m_id;
 
-    AssetClass m_assetClass;
+    QString m_modelID;
     QString m_name;
-    QString m_hash;
-    QString m_iconPath;
 
     QPointF m_position;
     float m_zPosition = 0;
@@ -90,8 +78,6 @@ protected:
 
     QList<QVariant> m_parameters;
     QList<QString> m_parametersNames;
-
-    QList<Trigger> m_triggers;
 };
 
 #endif // ASSET_H

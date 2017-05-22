@@ -160,9 +160,9 @@ QList<QWeakPointer<Asset> > Room::assets() const
     return tmp;
 }
 
-QWeakPointer<Asset> Room::addAsset(const QWeakPointer<Asset> &baseAsset)
+QWeakPointer<Asset> Room::addAsset(const Asset &baseAsset)
 {
-    QSharedPointer<Asset> copy = QSharedPointer<Asset>(new Asset(*baseAsset.data()));
+    QSharedPointer<Asset> copy = QSharedPointer<Asset>(new Asset(baseAsset));
     m_assets.append(copy);
     return copy;
 }

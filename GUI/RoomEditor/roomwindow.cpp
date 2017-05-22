@@ -16,12 +16,12 @@ RoomWindow::RoomWindow(QWidget *parent) :
     m_slowTimer->start(100);
 
     ui->listWidget->clear();
-    QList<QWeakPointer<Asset> > assetDatabase = Project::assetDatabase();
-    for(int i = 0; i < assetDatabase.length(); i++)
+    QList<AssetModel> assetModelsDatabase = Project::assetModelsDatabase();
+    for(int i = 0; i < assetModelsDatabase.length(); i++)
     {
-        QWeakPointer<Asset> asset = assetDatabase[i];
-        QIcon assetIcon(asset.data()->iconPath());
-        new QListWidgetItem(assetIcon, asset.data()->name(), ui->listWidget);
+        AssetModel assetModel = assetModelsDatabase[i];
+        QIcon assetIcon(assetModel.iconPath());
+        new QListWidgetItem(assetIcon, assetModel.name(), ui->listWidget);
     }
 }
 

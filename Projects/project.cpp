@@ -1,9 +1,9 @@
 #include "project.h"
 
 Project *Project::s_activeProject = Q_NULLPTR;
-QList<QSharedPointer<Asset> > Project::s_assetDatabase;
-QList<Trigger > Project::s_globalTriggersDatabase;
-QList<Trigger > Project::s_commonTriggersDatabase;
+QList<AssetModel> Project::s_assetModelsDatabase;
+QList<Trigger> Project::s_globalTriggersDatabase;
+QList<Trigger> Project::s_commonTriggersDatabase;
 
 Project::Project(const QString projectFilepath)
 {
@@ -216,12 +216,12 @@ bool Project::save()
 
 void Project::loadDatabases()
 {
-    loadAssetDatabase();
+    loadAssetModelsDatabase();
     loadGlobalTriggersDatabase();
     loadCommonTriggersDatabase();
 }
 
-void Project::loadAssetDatabase()
+void Project::loadAssetModelsDatabase()
 {
     QFile file(ASSET_DB_PATH);
     file.open(QIODevice::ReadOnly);
@@ -238,44 +238,53 @@ void Project::loadAssetDatabase()
 
         if(!elem.isNull())
         {
-            s_assetDatabase.append(QSharedPointer<Asset>(new Asset(elem)));
+            s_assetModelsDatabase.append(AssetModel(elem));
         }
 
         node = node.nextSibling();
     }
 
-    sortAssetDatabase();
+    sortAssetModelsDatabase();
 }
 
-void Project::sortAssetDatabase()
+void Project::sortAssetModelsDatabase()
 {
-    std::sort(s_assetDatabase.begin(), s_assetDatabase.end(), Project::compareAssetName);
+    std::sort(s_assetModelsDatabase.begin(), s_assetModelsDatabase.end(), Project::compareAssetName);
 }
 
-bool Project::compareAssetName(const QWeakPointer<Asset> a1, const QWeakPointer<Asset> a2)
+bool Project::compareAssetName(const Asset a1, const Asset a2)
 {
-    return a1.data()->name() < a2.data()->name();
+    return a1.name() < a2.name();
 }
 
-int Project::assetDatabaseSize()
+int Project::assetModelsCount()
 {
-    return s_assetDatabase.length();
+    return s_assetModelsDatabase.length();
 }
 
-QWeakPointer<Asset> Project::assetDatabaseAt(int index)
+AssetModel Project::assetModelAt(int index)
 {
-    Q_ASSERT_X((index >= 0) && (index < s_assetDatabase.length()), "Project::databaseAssetAt(int index)", "index is out of range");
-    return s_assetDatabase[index];
+    Q_ASSERT_X((index >= 0) && (index < s_assetModelsDatabase.length()), "Project::databaseAssetAt(int index)", "index is out of range");
+    return s_assetModelsDatabase[index];
 }
 
-QList<QWeakPointer<Asset> > Project::assetDatabase()
+QList<AssetModel> Project::assetModelsDatabase()
 {
-    QList<QWeakPointer<Asset> > tmp;
-    foreach (QSharedPointer<Asset> asset, s_assetDatabase)
+    return s_assetModelsDatabase;
+}
+
+AssetModel Project::modelOf(const QWeakPointer<Asset> &asset)
+{
+    foreach (AssetModel model, s_assetModelsDatabase)
     {
-        tmp.append(asset.toWeakRef());
+        if(model.id() == asset.data()->getModelID())
+        {
+            return model;
+        }
     }
-    return tmp;
+
+    Q_ASSERT_X(false, "Project::modelOf", "Could not find model of asset");
+    return s_assetModelsDatabase.first();
 }
 
 void Project::loadGlobalTriggersDatabase()

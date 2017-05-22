@@ -149,7 +149,8 @@ void AssetMarker::showContextMenu(const QPoint &pos)
 
 void AssetMarker::updateFromAsset()
 {
-    QPixmap markerPixmap(m_asset.data()->iconPath());
+    AssetModel assetModel = Project::modelOf(m_asset);
+    QPixmap markerPixmap(assetModel.iconPath());
 
     qreal compensator = 1000;
 

@@ -2,6 +2,16 @@
 
 int Asset::s_nextId = 0;
 
+Asset::Asset(const AssetModel &model)
+{
+    m_name = model.name();
+    m_modelID = model.id();
+
+    m_size = model.size();
+    m_zSize = model.zSize();
+
+}
+
 Asset::Asset(const QDomElement &elem)
 {
     m_id = s_nextId++;
@@ -14,27 +24,18 @@ Asset::Asset(const QDomElement &elem)
         nodeElem = node.toElement();
         if(!nodeElem.isNull())
         {
-            if(nodeElem.tagName() == "Trigger")
-            {
-                m_triggers.append(Trigger(nodeElem));
-            }
-            else
-            {
-                m_parametersNames.append(nodeElem.tagName());
-                int parameterType = nodeElem.attribute("type").toInt();
-                QVariant parameter = nodeElem.attribute("value");
-                parameter.convert(parameterType);
-                m_parameters.append(parameter);
-            }
+            m_parametersNames.append(nodeElem.tagName());
+            int parameterType = nodeElem.attribute("type").toInt();
+            QVariant parameter = nodeElem.attribute("value");
+            parameter.convert(parameterType);
+            m_parameters.append(parameter);
         }
 
         node = node.nextSibling();
     }
 
     m_name = elem.attribute("name", "No name");
-    m_hash = elem.attribute("hash");
-    m_assetClass = (AssetClass)elem.attribute("class", "0").toInt();
-    m_iconPath = elem.attribute("icon_url", "No icon URL");
+    m_modelID = elem.attribute("modelID");
 
     m_size.setWidth(elem.attribute("sizex", "1").toFloat());
     m_size.setHeight(elem.attribute("sizey", "1").toFloat());
@@ -53,10 +54,8 @@ Asset::Asset(const QDomElement &elem)
 
 void Asset::toXml(QDomDocument *dom, QDomElement *assetElement) const
 {
-    assetElement->setAttribute("class", (int)m_assetClass);
     assetElement->setAttribute("name", m_name);
-    assetElement->setAttribute("hash", m_hash);
-    assetElement->setAttribute("icon_url", m_iconPath);
+    assetElement->setAttribute("modelID", m_modelID);
 
     assetElement->setAttribute("posx", m_position.x());
     assetElement->setAttribute("posy", m_position.y());
@@ -71,13 +70,6 @@ void Asset::toXml(QDomDocument *dom, QDomElement *assetElement) const
     assetElement->setAttribute("scalez", m_zScale);
 
     assetElement->setAttribute("rotation", m_rotation);
-
-    for(int i = 0; i < m_triggers.length(); i++)
-    {
-        QDomElement elem = dom->createElement("Trigger");
-        m_triggers[i].toXML(&elem);
-        assetElement->appendChild(elem);
-    }
 
     for(int i = 0; i < m_parameters.length(); i++)
     {
@@ -97,31 +89,6 @@ void Asset::setName(const QString &name)
 {
     m_name = name;
 }
-
-AssetClass Asset::assetClass() const
-{
-    return m_assetClass;
-}
-
-void Asset::setAssetClass(const AssetClass &assetClass)
-{
-    m_assetClass = assetClass;
-}
-
-QString Asset::iconPath() const
-{
-    return m_iconPath;
-}
-
-void Asset::setIconPath(const QString &iconPath)
-{
-    m_iconPath = iconPath;
-}
-
-//QSizeF Asset::size() const
-//{
-//    return m_size;
-//}
 
 void Asset::setSize(const QSizeF &size)
 {
@@ -232,10 +199,8 @@ void Asset::copy(const Asset &other)
 {
     m_id = other.m_id;
 
-    m_assetClass = other.m_assetClass;
     m_name = other.m_name;
-    m_hash = other.m_hash;
-    m_iconPath = other.m_iconPath;
+    m_modelID = other.m_modelID;
 
     m_position = other.m_position;
     m_zPosition = other.m_zPosition;
@@ -249,12 +214,12 @@ void Asset::copy(const Asset &other)
     m_parametersNames = other.m_parametersNames;
 }
 
-QList<Trigger> Asset::getTriggers() const
+QString Asset::getModelID() const
 {
-    return m_triggers;
+    return m_modelID;
 }
 
-void Asset::setTriggers(const QList<Trigger> &triggers)
+void Asset::setModelID(const QString &modelID)
 {
-    m_triggers = triggers;
+    m_modelID = modelID;
 }

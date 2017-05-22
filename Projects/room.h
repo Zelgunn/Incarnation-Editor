@@ -38,7 +38,7 @@ public:
     int getId() const;
 
     QList<QWeakPointer<Asset> > assets() const;
-    QWeakPointer<Asset> addAsset(const QWeakPointer<Asset> &baseAsset);
+    QWeakPointer<Asset> addAsset(const Asset &baseAsset);
 
 private:
     static int s_nextId;

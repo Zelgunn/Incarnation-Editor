@@ -7,6 +7,7 @@
 #include <QSharedPointer>
 
 #include "room.h"
+#include "assetmodel.h"
 #include "asset.h"
 #include "event.h"
 #include "trigger.h"
@@ -30,12 +31,13 @@ public:
 
     static void loadDatabases();
 
-    static void loadAssetDatabase();
-    static void sortAssetDatabase();
-    static bool compareAssetName(const QWeakPointer<Asset> a1, const QWeakPointer<Asset> a2);
-    static int assetDatabaseSize();
-    static QWeakPointer<Asset> assetDatabaseAt(int index);
-    static QList<QWeakPointer<Asset>> assetDatabase();
+    static void loadAssetModelsDatabase();
+    static void sortAssetModelsDatabase();
+    static bool compareAssetName(const Asset a1, const Asset a2);
+    static int assetModelsCount();
+    static AssetModel assetModelAt(int index);
+    static QList<AssetModel> assetModelsDatabase();
+    static AssetModel modelOf(const QWeakPointer<Asset> &asset);
 
     static void loadGlobalTriggersDatabase();
     static void loadCommonTriggersDatabase();
@@ -69,7 +71,7 @@ private:
     QList<QSharedPointer<Event> > m_events;
     QList<QSharedPointer<Trigger> > m_globalTriggers;
 
-    static QList<QSharedPointer<Asset> > s_assetDatabase;
+    static QList<AssetModel> s_assetModelsDatabase;
     static QList<Trigger> s_globalTriggersDatabase;
     static QList<Trigger> s_commonTriggersDatabase;
 };

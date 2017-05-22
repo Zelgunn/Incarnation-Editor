@@ -43,7 +43,8 @@ void TriggerDialog::loadTree()
                 addTreeItem(commonTriggers[k].action(), commonTriggerItem);
             }
 
-            QList<Trigger> assetTriggers = roomAssets[j].data()->getTriggers();
+            AssetModel assetModel = Project::modelOf(roomAssets[j]);
+            QList<Trigger> assetTriggers = assetModel.triggers();
             QList<QString> assetTriggersCaterogies;
             QList<QTreeWidgetItem *> assetTriggersCaterogiesItems;
             for(int k = 0; k < assetTriggers.length(); k++)

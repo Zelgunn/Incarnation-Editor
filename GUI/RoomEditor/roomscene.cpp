@@ -122,8 +122,8 @@ void RoomScene::dropEvent(QGraphicsSceneDragDropEvent *event)
         QString databaseAssetIndexString = event->mimeData()->text();
         databaseAssetIndexString = databaseAssetIndexString.right(databaseAssetIndexString.length() - 13);
         int databaseAssetIndex = databaseAssetIndexString.toInt();
-        QWeakPointer<Asset> asset = Project::assetDatabaseAt(databaseAssetIndex);
-        asset = m_room.data()->addAsset(asset);
+        Asset assetModel = Project::assetModelAt(databaseAssetIndex);
+        QWeakPointer<Asset> asset = m_room.data()->addAsset(assetModel);
         asset.data()->setPosition(event->scenePos()  / m_scale);
         //AssetMarker *assetMarker = addAssetMarker(asset);
         addAssetMarker(asset);
