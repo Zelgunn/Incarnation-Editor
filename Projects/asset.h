@@ -7,6 +7,8 @@
 #include <QUrl>
 #include <QSize>
 
+#include "Projects/trigger.h"
+
 #include <QDebug>
 
 enum AssetClass
@@ -85,6 +87,8 @@ protected:
 
     QList<QVariant> m_parameters;
     QList<QString> m_parametersNames;
+
+    QList<Trigger> m_triggers;
 };
 
 #endif // ASSET_H

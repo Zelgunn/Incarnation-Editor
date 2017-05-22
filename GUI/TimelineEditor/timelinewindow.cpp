@@ -28,7 +28,7 @@ void TimelineWindow::manualUpdate()
 
 void TimelineWindow::on_actionNew_event_triggered()
 {
-    NewEventDialog newEventDialog;
+    EventDialog newEventDialog;
     QColor eventColor = QColor::fromHsv(m_nextEventColorHue, 255, 255);
     newEventDialog.setColor(eventColor);
 

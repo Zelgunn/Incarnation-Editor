@@ -5,7 +5,7 @@
 #include <QTimer>
 
 #include "timelineview.h"
-#include "neweventdialog.h"
+#include "eventdialog.h"
 
 namespace Ui {
 class TimelineWindow;

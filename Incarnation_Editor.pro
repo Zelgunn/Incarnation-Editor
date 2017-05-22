@@ -57,9 +57,9 @@ SOURCES += main.cpp\
     Projects/trigger.cpp \
     GUI/TimelineEditor/timelineview.cpp \
     GUI/TimelineEditor/timelinescene.cpp \
-    GUI/TimelineEditor/neweventdialog.cpp \
     GUI/TimelineEditor/colorwidget.cpp \
-    GUI/TimelineEditor/timecursor.cpp
+    GUI/TimelineEditor/timecursor.cpp \
+    GUI/TimelineEditor/eventdialog.cpp
 
 HEADERS  += GUI/mainwindow.h \
     GUI/StructureEditor/structurewindow.h \
@@ -93,9 +93,9 @@ HEADERS  += GUI/mainwindow.h \
     Projects/trigger.h \
     GUI/TimelineEditor/timelineview.h \
     GUI/TimelineEditor/timelinescene.h \
-    GUI/TimelineEditor/neweventdialog.h \
     GUI/TimelineEditor/colorwidget.h \
-    GUI/TimelineEditor/timecursor.h
+    GUI/TimelineEditor/timecursor.h \
+    GUI/TimelineEditor/eventdialog.h
 
 FORMS    += GUI/mainwindow.ui \
     GUI/StructureEditor/structurewindow.ui \
@@ -103,7 +103,7 @@ FORMS    += GUI/mainwindow.ui \
     GUI/RoomEditor/roomwindow.ui \
     GUI/RoomEditor/asseteditiondialog.ui \
     GUI/TimelineEditor/timelinewindow.ui \
-    GUI/TimelineEditor/neweventdialog.ui
+    GUI/TimelineEditor/eventdialog.ui
 
 RESOURCES += \
     images.qrc \

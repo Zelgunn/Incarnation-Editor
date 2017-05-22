@@ -10,10 +10,12 @@
 #include <QAction>
 
 #include "Projects/event.h"
+#include "eventdialog.h"
 
 #include <QDebug>
 
 #define SELECT_WIDTH 5
+#define MIN_WIDTH 20
 
 class GraphicsEventItem : public QObject, public QGraphicsItem
 {
@@ -32,6 +34,7 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     QWeakPointer<Event> event() const;
+    QRectF displayRect() const;
     QRectF timeRect() const;
 
     bool positionIsOnEdges(const QPointF &position) const;

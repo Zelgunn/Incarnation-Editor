@@ -14,11 +14,18 @@ Asset::Asset(const QDomElement &elem)
         nodeElem = node.toElement();
         if(!nodeElem.isNull())
         {
-            m_parametersNames.append(nodeElem.tagName());
-            int parameterType = nodeElem.attribute("type").toInt();
-            QVariant parameter = nodeElem.attribute("value");
-            parameter.convert(parameterType);
-            m_parameters.append(parameter);
+            if(nodeElem.tagName() == "Trigger")
+            {
+                m_triggers.append(Trigger(nodeElem));
+            }
+            else
+            {
+                m_parametersNames.append(nodeElem.tagName());
+                int parameterType = nodeElem.attribute("type").toInt();
+                QVariant parameter = nodeElem.attribute("value");
+                parameter.convert(parameterType);
+                m_parameters.append(parameter);
+            }
         }
 
         node = node.nextSibling();
@@ -64,6 +71,13 @@ void Asset::toXml(QDomDocument *dom, QDomElement *assetElement) const
     assetElement->setAttribute("scalez", m_zScale);
 
     assetElement->setAttribute("rotation", m_rotation);
+
+    for(int i = 0; i < m_triggers.length(); i++)
+    {
+        QDomElement elem = dom->createElement("Trigger");
+        m_triggers[i].toXML(&elem);
+        assetElement->appendChild(elem);
+    }
 
     for(int i = 0; i < m_parameters.length(); i++)
     {

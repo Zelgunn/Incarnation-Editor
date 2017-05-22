@@ -1,24 +1,28 @@
-#ifndef NEWEVENTDIALOG_H
-#define NEWEVENTDIALOG_H
+#ifndef EVENTDIALOG_H
+#define EVENTDIALOG_H
 
 #include <QDialog>
 #include <QSpinBox>
 
 #include "colorwidget.h"
+#include "Projects/event.h"
 
 #include <QDebug>
 
 namespace Ui {
-class NewEventDialog;
+class EventDialog;
 }
 
-class NewEventDialog : public QDialog
+class EventDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit NewEventDialog(QWidget *parent = 0);
-    ~NewEventDialog();
+    explicit EventDialog(QWidget *parent = 0);
+    ~EventDialog();
+
+    int exec();
+    int exec(const QWeakPointer<Event> &event);
 
     QString eventName() const;
     int start() const;
@@ -45,7 +49,7 @@ private slots:
     void on_deltaSecSpinBox_editingFinished();
 
 private:
-    Ui::NewEventDialog *ui;
+    Ui::EventDialog *ui;
 };
 
-#endif // NEWEVENTDIALOG_H
+#endif // EVENTDIALOG_H

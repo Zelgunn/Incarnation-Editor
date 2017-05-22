@@ -3,11 +3,13 @@
 Trigger::Trigger(const QDomElement &triggerElem)
 {
     m_id = triggerElem.attribute("id");
+    m_usesDuration = triggerElem.attribute("usesDuration") == "true";
 }
 
-void Trigger::toXML(QDomElement *triggerElem)
+void Trigger::toXML(QDomElement *triggerElem) const
 {
-
+    triggerElem->setAttribute("id", m_id);
+    triggerElem->setAttribute("usesDuration", m_usesDuration ? "true" : "false");
 }
 
 QString Trigger::id() const

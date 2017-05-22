@@ -1,51 +1,86 @@
-#include "neweventdialog.h"
-#include "ui_neweventdialog.h"
+#include "eventdialog.h"
+#include "ui_eventdialog.h"
 
-NewEventDialog::NewEventDialog(QWidget *parent) :
+EventDialog::EventDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::NewEventDialog)
+    ui(new Ui::EventDialog)
 {
     ui->setupUi(this);
 }
 
-NewEventDialog::~NewEventDialog()
+EventDialog::~EventDialog()
 {
     delete ui;
 }
 
-QString NewEventDialog::eventName() const
+int EventDialog::exec()
+{
+    return QDialog::exec();
+}
+
+int EventDialog::exec(const QWeakPointer<Event> &event)
+{
+    setWindowTitle(tr("Edit event"));
+    ui->nameLineEdit->setText(event.data()->name());
+
+    int start = (int)event.data()->start();
+    ui->startMinSpinBox->setValue(start / 60);
+    ui->startSecSpinBox->setValue(start % 60);
+
+    int duration = (int)event.data()->duration();
+    if(duration > 0)
+    {
+        ui->durationCheckBox->setChecked(true);
+        ui->durationMinSpinBox->setValue(duration / 60);
+        ui->durationSecSpinBox->setValue(duration % 60);
+
+        int period = (int)event.data()->period();
+        if(period > 0)
+        {
+            ui->periodCheckBox->setChecked(true);
+            ui->periodMinSpinBox->setValue(period / 60);
+            ui->periodSecSpinBox->setValue(period % 60);
+        }
+    }
+
+    setColor(event.data()->color());
+
+    return QDialog::exec();
+}
+
+QString EventDialog::eventName() const
 {
     return ui->nameLineEdit->text();
 }
 
-int NewEventDialog::start() const
+int EventDialog::start() const
 {
     return ui->startMinSpinBox->value() * 60 + ui->startSecSpinBox->value();
 }
 
-int NewEventDialog::duration() const
+int EventDialog::duration() const
 {
     if(! ui->durationCheckBox->isChecked()) return -1;
     return ui->durationMinSpinBox->value() * 60 + ui->durationSecSpinBox->value();
 }
 
-int NewEventDialog::period() const
+int EventDialog::period() const
 {
     if(! ui->periodCheckBox->isChecked()) return -1;
     return ui->periodMinSpinBox->value() * 60 + ui->periodSecSpinBox->value();
 }
 
-QColor NewEventDialog::color() const
+QColor EventDialog::color() const
 {
     return ui->colorWidget->color();
 }
 
-void NewEventDialog::setColor(const QColor &color)
+void EventDialog::setColor(const QColor &color)
 {
     ui->colorWidget->setColor(color);
 }
 
-void NewEventDialog::checkSecSpinBox(QSpinBox *secSpinBox, QSpinBox *minSpinBox)
+void EventDialog::checkSecSpinBox(QSpinBox *secSpinBox, QSpinBox *minSpinBox)
 {
     int secs = secSpinBox->value();
     int mins = secs / 60;
@@ -58,7 +93,7 @@ void NewEventDialog::checkSecSpinBox(QSpinBox *secSpinBox, QSpinBox *minSpinBox)
     }
 }
 
-void NewEventDialog::checkPeriodMinimum()
+void EventDialog::checkPeriodMinimum()
 {
     ui->periodMinSpinBox->setMinimum(ui->durationMinSpinBox->value());
 
@@ -72,7 +107,7 @@ void NewEventDialog::checkPeriodMinimum()
     }
 }
 
-void NewEventDialog::updatePeriodDurationDelta()
+void EventDialog::updatePeriodDurationDelta()
 {
     int durationSecs = duration();
     int periodSecs = period();
@@ -84,7 +119,7 @@ void NewEventDialog::updatePeriodDurationDelta()
     ui->deltaSecSpinBox->setValue(deltaSecs);
 }
 
-void NewEventDialog::updatePeriodFromDelta()
+void EventDialog::updatePeriodFromDelta()
 {
     int deltaSecs = ui->deltaMinSpinBox->value() * 60 + ui->deltaSecSpinBox->value();
     int periodSecs = duration() + deltaSecs;
@@ -94,7 +129,7 @@ void NewEventDialog::updatePeriodFromDelta()
     ui->periodSecSpinBox->setValue(periodSecs);
 }
 
-void NewEventDialog::on_durationCheckBox_toggled(bool checked)
+void EventDialog::on_durationCheckBox_toggled(bool checked)
 {
     ui->periodCheckBox->setEnabled(checked);
     ui->durationMinSpinBox->setEnabled(checked);
@@ -106,7 +141,7 @@ void NewEventDialog::on_durationCheckBox_toggled(bool checked)
     }
 }
 
-void NewEventDialog::on_periodCheckBox_toggled(bool checked)
+void EventDialog::on_periodCheckBox_toggled(bool checked)
 {
     ui->periodMinSpinBox->setEnabled(checked);
     ui->periodSecSpinBox->setEnabled(checked);
@@ -115,12 +150,12 @@ void NewEventDialog::on_periodCheckBox_toggled(bool checked)
     ui->deltaSecSpinBox->setEnabled(checked);
 }
 
-void NewEventDialog::on_startSecSpinBox_editingFinished()
+void EventDialog::on_startSecSpinBox_editingFinished()
 {
     checkSecSpinBox(ui->startSecSpinBox, ui->startMinSpinBox);
 }
 
-void NewEventDialog::on_durationSecSpinBox_editingFinished()
+void EventDialog::on_durationSecSpinBox_editingFinished()
 {
     checkSecSpinBox(ui->durationSecSpinBox, ui->durationMinSpinBox);
 
@@ -128,31 +163,31 @@ void NewEventDialog::on_durationSecSpinBox_editingFinished()
     updatePeriodDurationDelta();
 }
 
-void NewEventDialog::on_periodSecSpinBox_editingFinished()
+void EventDialog::on_periodSecSpinBox_editingFinished()
 {
     checkSecSpinBox(ui->periodSecSpinBox, ui->periodMinSpinBox);
 
     updatePeriodDurationDelta();
 }
 
-void NewEventDialog::on_durationMinSpinBox_editingFinished()
+void EventDialog::on_durationMinSpinBox_editingFinished()
 {
     checkPeriodMinimum();
     updatePeriodDurationDelta();
 }
 
-void NewEventDialog::on_periodMinSpinBox_editingFinished()
+void EventDialog::on_periodMinSpinBox_editingFinished()
 {
     checkPeriodMinimum();
     updatePeriodDurationDelta();
 }
 
-void NewEventDialog::on_deltaMinSpinBox_editingFinished()
+void EventDialog::on_deltaMinSpinBox_editingFinished()
 {
     updatePeriodFromDelta();
 }
 
-void NewEventDialog::on_deltaSecSpinBox_editingFinished()
+void EventDialog::on_deltaSecSpinBox_editingFinished()
 {
     updatePeriodFromDelta();
 }

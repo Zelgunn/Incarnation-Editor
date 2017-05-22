@@ -2,5 +2,7 @@
     <qresource prefix="/all">
         <file>database/assets.xml</file>
         <file>database/images_ref.xml</file>
+        <file>database/common_triggers.xml</file>
+        <file>database/global_triggers.xml</file>
     </qresource>
 </RCC>
