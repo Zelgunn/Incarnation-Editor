@@ -65,6 +65,9 @@ public:
 
     void copy(const Asset &other);
 
+    QList<Trigger> getTriggers() const;
+    void setTriggers(const QList<Trigger> &triggers);
+
 protected:
     static int s_nextId;
     int m_id;

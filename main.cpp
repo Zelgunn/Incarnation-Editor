@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf8"));
-    Project::loadDatabase();
+    Project::loadDatabases();
 
     MainWindow w;
     w.show();

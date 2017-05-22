@@ -2,6 +2,8 @@
 
 Project *Project::s_activeProject = Q_NULLPTR;
 QList<QSharedPointer<Asset> > Project::s_assetDatabase;
+QList<Trigger > Project::s_globalTriggersDatabase;
+QList<Trigger > Project::s_commonTriggersDatabase;
 
 Project::Project(const QString projectFilepath)
 {
@@ -138,7 +140,7 @@ bool Project::load()
 
             if(elem.tagName() == "Trigger")
             {
-                m_triggers.append(QSharedPointer<Trigger>(new Trigger(elem)));
+                m_globalTriggers.append(QSharedPointer<Trigger>(new Trigger(elem)));
             }
         }
 
@@ -189,10 +191,10 @@ bool Project::save()
         root.appendChild(elem);
     }
 
-    for(int i = 0; i < m_triggers.length(); i++)
+    for(int i = 0; i < m_globalTriggers.length(); i++)
     {
         elem = dom.createElement("Trigger");
-        m_triggers[i]->toXML(&elem);
+        m_globalTriggers[i]->toXML(&elem);
         root.appendChild(elem);
     }
 
@@ -212,7 +214,14 @@ bool Project::save()
     return true;
 }
 
-void Project::loadDatabase()
+void Project::loadDatabases()
+{
+    loadAssetDatabase();
+    loadGlobalTriggersDatabase();
+    loadCommonTriggersDatabase();
+}
+
+void Project::loadAssetDatabase()
 {
     QFile file(ASSET_DB_PATH);
     file.open(QIODevice::ReadOnly);
@@ -235,10 +244,10 @@ void Project::loadDatabase()
         node = node.nextSibling();
     }
 
-    sortDatabase();
+    sortAssetDatabase();
 }
 
-void Project::sortDatabase()
+void Project::sortAssetDatabase()
 {
     std::sort(s_assetDatabase.begin(), s_assetDatabase.end(), Project::compareAssetName);
 }
@@ -267,6 +276,54 @@ QList<QWeakPointer<Asset> > Project::assetDatabase()
         tmp.append(asset.toWeakRef());
     }
     return tmp;
+}
+
+void Project::loadGlobalTriggersDatabase()
+{
+    QFile file(GLOBTRIG_DB_PATH);
+    file.open(QIODevice::ReadOnly);
+
+    QDomDocument dom;
+    dom.setContent(&file);
+
+    QDomElement elem = dom.documentElement();
+    QDomNode node = elem.firstChild();
+
+    while(!node.isNull())
+    {
+        elem = node.toElement();
+
+        if(!elem.isNull())
+        {
+            s_globalTriggersDatabase.append(Trigger(elem));
+        }
+
+        node = node.nextSibling();
+    }
+}
+
+void Project::loadCommonTriggersDatabase()
+{
+    QFile file(COMTRIG_DB_PATH);
+    file.open(QIODevice::ReadOnly);
+
+    QDomDocument dom;
+    dom.setContent(&file);
+
+    QDomElement elem = dom.documentElement();
+    QDomNode node = elem.firstChild();
+
+    while(!node.isNull())
+    {
+        elem = node.toElement();
+
+        if(!elem.isNull())
+        {
+            s_commonTriggersDatabase.append(Trigger(elem));
+        }
+
+        node = node.nextSibling();
+    }
 }
 
 QString Project::getFilepath() const
@@ -373,10 +430,10 @@ void Project::addEvent(Event *event)
     m_events.append(QSharedPointer<Event>(event));
 }
 
-QList<QWeakPointer<Trigger> > Project::getTriggers() const
+QList<QWeakPointer<Trigger> > Project::getGlobalTriggers() const
 {
     QList<QWeakPointer<Trigger> > triggers;
-    foreach (QSharedPointer<Trigger> trigger, m_triggers)
+    foreach (QSharedPointer<Trigger> trigger, m_globalTriggers)
     {
         triggers.append(trigger.toWeakRef());
     }
@@ -386,7 +443,7 @@ QList<QWeakPointer<Trigger> > Project::getTriggers() const
 
 QWeakPointer<Trigger> Project::getTriggerWithID(const QString &id)
 {
-    foreach (QSharedPointer<Trigger> trigger, m_triggers)
+    foreach (QSharedPointer<Trigger> trigger, m_globalTriggers)
     {
         if(trigger.data()->id() == id)
         {
@@ -394,6 +451,17 @@ QWeakPointer<Trigger> Project::getTriggerWithID(const QString &id)
         }
     }
 
-    qDebug() << "No trigger with given ID :" << id;
+    qDebug() << "getTriggerWithID : No trigger with given ID :" << id;
+    qDebug() << "getTriggerWithID : search in Events too";
     return QWeakPointer<Trigger>(Q_NULLPTR);
+}
+
+QList<Trigger> Project::globalTriggersDatabase()
+{
+    return s_globalTriggersDatabase;
+}
+
+QList<Trigger> Project::commonTriggersDatabase()
+{
+    return s_commonTriggersDatabase;
 }

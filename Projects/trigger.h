@@ -9,12 +9,19 @@ public:
     Trigger(const QDomElement &triggerElem);
     void toXML(QDomElement *triggerElem) const;
 
-    QString id() const;
-    void setId(const QString &id);
+    int id() const;
+    void setId(int id);
+
+    QString action() const;
+    void setAction(const QString &action);
+
+    QString category() const;
+    void setCategory(const QString &category);
 
 private:
-    QString m_id;
-    bool m_usesDuration;
+    int m_id;
+    QString m_action;
+    QString m_category;
 };
 
 #endif // TRIGGER_H

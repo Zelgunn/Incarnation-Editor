@@ -248,3 +248,13 @@ void Asset::copy(const Asset &other)
     m_parameters = other.m_parameters;
     m_parametersNames = other.m_parametersNames;
 }
+
+QList<Trigger> Asset::getTriggers() const
+{
+    return m_triggers;
+}
+
+void Asset::setTriggers(const QList<Trigger> &triggers)
+{
+    m_triggers = triggers;
+}

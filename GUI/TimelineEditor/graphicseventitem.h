@@ -11,6 +11,7 @@
 
 #include "Projects/event.h"
 #include "eventdialog.h"
+#include "triggerdialog.h"
 
 #include <QDebug>
 
@@ -41,7 +42,8 @@ public:
     bool positionIsOnRightEdge(const QPointF &position) const;
     bool positionIsOnLeftEdge(const QPointF &position) const;
 
-    void showEditionPanel();
+    void showEventEditionPanel();
+    void showAddTriggerPanel();
 
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);

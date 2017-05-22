@@ -12,6 +12,8 @@
 #include "trigger.h"
 
 #define ASSET_DB_PATH ":/all/database/assets.xml"
+#define GLOBTRIG_DB_PATH ":/all/database/global_triggers.xml"
+#define COMTRIG_DB_PATH ":/all/database/common_triggers.xml"
 
 class Project
 {
@@ -26,12 +28,17 @@ public:
     bool load();
     bool save();
 
-    static void loadDatabase();
-    static void sortDatabase();
+    static void loadDatabases();
+
+    static void loadAssetDatabase();
+    static void sortAssetDatabase();
     static bool compareAssetName(const QWeakPointer<Asset> a1, const QWeakPointer<Asset> a2);
     static int assetDatabaseSize();
     static QWeakPointer<Asset> assetDatabaseAt(int index);
     static QList<QWeakPointer<Asset>> assetDatabase();
+
+    static void loadGlobalTriggersDatabase();
+    static void loadCommonTriggersDatabase();
 
     QString getFilepath() const;
     QWeakPointer<Room> addRoom(const Room &room);
@@ -47,8 +54,11 @@ public:
     QList<QWeakPointer<Event> > getEvents() const;
     void addEvent(Event *event);
 
-    QList<QWeakPointer<Trigger> > getTriggers() const;
+    QList<QWeakPointer<Trigger> > getGlobalTriggers() const;
     QWeakPointer<Trigger> getTriggerWithID(const QString &id);
+
+    static QList<Trigger> globalTriggersDatabase();
+    static QList<Trigger> commonTriggersDatabase();
 
 private:
     static Project *s_activeProject;
@@ -57,9 +67,11 @@ private:
 
     QList<QSharedPointer<Room> > m_rooms;
     QList<QSharedPointer<Event> > m_events;
-    QList<QSharedPointer<Trigger> > m_triggers;
+    QList<QSharedPointer<Trigger> > m_globalTriggers;
 
     static QList<QSharedPointer<Asset> > s_assetDatabase;
+    static QList<Trigger> s_globalTriggersDatabase;
+    static QList<Trigger> s_commonTriggersDatabase;
 };
 
 #endif // PROJECT_H

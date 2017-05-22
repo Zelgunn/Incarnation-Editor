@@ -122,7 +122,7 @@ bool GraphicsEventItem::positionIsOnLeftEdge(const QPointF &position) const
     return result;
 }
 
-void GraphicsEventItem::showEditionPanel()
+void GraphicsEventItem::showEventEditionPanel()
 {
     EventDialog editEventDialog;
     int dialogAnswer = editEventDialog.exec(m_event);
@@ -138,6 +138,19 @@ void GraphicsEventItem::showEditionPanel()
     m_event.data()->setPeriod(editEventDialog.period());
     m_event.data()->setColor(editEventDialog.color());
 }
+
+void GraphicsEventItem::showAddTriggerPanel()
+{
+    TriggerDialog addTriggerDialog;
+
+    int dialogAnswer = addTriggerDialog.exec();
+
+    if(dialogAnswer == QDialog::Rejected)
+    {
+        return;
+    }
+}
+
 
 void GraphicsEventItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
@@ -297,14 +310,22 @@ void GraphicsEventItem::onMouseRightRelease(QGraphicsSceneMouseEvent *event)
     if(!displayRect().contains(event->pos())) return;
     QMenu contextMenu(QObject::tr("Context menu"));
 
-    QAction *editAction = new QAction(QObject::tr("Edit event..."));
-    contextMenu.addAction(editAction);
+    QAction *editEventAction = new QAction(QObject::tr("Edit event..."));
+    contextMenu.addAction(editEventAction);
+
+    QAction *addTriggerAction = new QAction(QObject::tr("Add trigger..."));
+    contextMenu.addAction(addTriggerAction);
 
     QAction *result = contextMenu.exec(event->screenPos());
-    if(result == editAction)
+    if(result == editEventAction)
     {
-        showEditionPanel();
+        showEventEditionPanel();
+    }
+    else if(result == addTriggerAction)
+    {
+        showAddTriggerPanel();
     }
 
-    delete editAction;
+    delete editEventAction;
+    delete addTriggerAction;
 }
